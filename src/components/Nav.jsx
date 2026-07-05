@@ -16,7 +16,16 @@ export default function Nav({ activeSection }) {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         {/* Monogram logo looking like an integrated circuit */}
-        <a href="#hero" className="logo-chip" aria-label="Mohamed Mohamed Gaber Home">
+        <a
+          href="/"
+          className="logo-chip"
+          aria-label="Mohamed Mohamed Gaber Home"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.replaceState(null, '', '/');
+          }}
+        >
           <div className="chip-package">
             <span className="chip-pin pin-left-1"></span>
             <span className="chip-pin pin-left-2"></span>
