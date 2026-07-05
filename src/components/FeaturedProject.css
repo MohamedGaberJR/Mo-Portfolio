@@ -1,6 +1,7 @@
 .featured-project-container {
   margin-bottom: var(--spacing-lg);
   position: relative;
+  overflow: hidden;
 }
 
 .featured-grid {
@@ -46,6 +47,7 @@
 .phone-mockup {
   position: relative;
   width: 300px;
+  max-width: 100%;
   background: linear-gradient(160deg, #1e2218, #0c0e09, #0a0c08);
   border-radius: 46px;
   padding: 10px;
@@ -114,8 +116,6 @@
   color: var(--text-primary);
   font-family: var(--font-body);
   min-height: 540px;
-  border: 1px solid rgba(108, 125, 61, 0.06);
-  border-radius: 36px;
 }
 
 /* Status bar */

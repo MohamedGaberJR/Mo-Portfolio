@@ -10,6 +10,12 @@
   z-index: 1;
 }
 
+@media (max-width: 991px) {
+  .circuit-trace-container {
+    display: none;
+  }
+}
+
 .circuit-trace-svg {
   display: block;
 }
