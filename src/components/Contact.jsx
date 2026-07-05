@@ -8,8 +8,6 @@ export default function Contact() {
   return (
     <footer id="contact" className="contact-section">
       <div className="container contact-container">
-        {/* Dynamic trace anchor for Contact section */}
-        <div className="trace-anchor" data-id="contact" id="anchor-contact"></div>
 
         <div className="contact-panel">
           <span className="eyebrow">05 // SHUTDOWN TERMINAL</span>
@@ -76,6 +74,9 @@ export default function Contact() {
             </a>
           </div>
         </div>
+        
+        {/* Dynamic trace anchor for Contact section — now at the very end of the page */}
+        <div className="trace-anchor" data-id="contact" id="anchor-contact"></div>
       </div>
     </footer>
   );

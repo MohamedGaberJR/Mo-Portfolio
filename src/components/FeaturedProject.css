@@ -112,10 +112,35 @@
 .phone-screen {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #080a07 0%, #0a0d08 100%);
+  background: 
+    radial-gradient(circle at 50% 15%, rgba(168, 194, 76, 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, #080a07 0%, #0a0d08 100%);
   color: var(--text-primary);
   font-family: var(--font-body);
   min-height: 540px;
+  position: relative;
+}
+
+/* Subtle grid line layout inside the phone screen */
+.phone-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(168, 194, 76, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 194, 76, 0.015) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure child elements sit above grid watermark */
+.screen-statusbar,
+.screen-app-header,
+.screen-content,
+.home-indicator-bar {
+  position: relative;
+  z-index: 2;
 }
 
 /* Status bar */
@@ -221,6 +246,20 @@
   width: 90%;
   height: auto;
   opacity: 0.9;
+}
+
+.car-svg-hero path {
+  filter: drop-shadow(0 0 3px rgba(168, 194, 76, 0.45));
+}
+
+.car-svg-hero line {
+  animation: road-slide 1.2s linear infinite;
+}
+
+@keyframes road-slide {
+  to {
+    stroke-dashoffset: -12;
+  }
 }
 
 .banner-overlay {
