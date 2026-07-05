@@ -1,3 +1,4 @@
+/* ===== Top Header Bar ===== */
 .navbar {
   position: fixed;
   top: 0;
@@ -13,15 +14,7 @@
 
 @media (max-width: 767px) {
   .navbar {
-    top: auto;
-    bottom: 0;
-    height: 60px;
-    background-color: rgba(11, 13, 10, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(168, 194, 76, 0.25);
-    border-bottom: none;
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+    height: 56px;
   }
 }
 
@@ -48,7 +41,7 @@
   }
 }
 
-/* Integrated Circuit Monogram Logo */
+/* ===== Integrated Circuit Monogram Logo ===== */
 .logo-chip {
   display: inline-block;
   cursor: pointer;
@@ -65,13 +58,6 @@
   align-items: center;
   justify-content: center;
   transition: all var(--transition-fast);
-}
-
-@media (max-width: 767px) {
-  .chip-package {
-    width: 44px;
-    height: 28px;
-  }
 }
 
 .chip-package:hover {
@@ -136,78 +122,15 @@
 .pin-right-2 { right: -5px; top: 17px; }
 .pin-right-3 { right: -5px; top: 27px; }
 
-@media (max-width: 767px) {
-  .chip-die {
-    font-size: 0.75rem;
-  }
-  .chip-led {
-    top: 2px;
-    right: 2px;
-  }
-  .chip-pin {
-    width: 4px;
-  }
-  .pin-left-1 { left: -4px; top: 4px; }
-  .pin-left-2 { left: -4px; top: 12px; }
-  .pin-left-3 { left: -4px; top: 20px; }
-  .pin-right-1 { right: -4px; top: 4px; }
-  .pin-right-2 { right: -4px; top: 12px; }
-  .pin-right-3 { right: -4px; top: 20px; }
-}
-
-/* Navigation Links */
-.nav-links {
-  display: flex;
-  gap: 8px;
-}
-
-@media (max-width: 767px) {
-  .nav-links {
-    position: static;
-    transform: none;
-    width: auto;
-    max-width: none;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
+/* ===== Desktop Navigation Links (inside top bar) ===== */
+.nav-links-desktop {
+  display: none;
+  gap: var(--spacing-md);
 }
 
 @media (min-width: 768px) {
-  .nav-links {
-    gap: var(--spacing-md);
-  }
-}
-
-.nav-links:hover {
-  border-color: var(--olive-signal);
-  box-shadow: 
-    0 12px 35px rgba(0, 0, 0, 0.7), 
-    0 0 20px rgba(168, 194, 76, 0.25);
-}
-
-@media (min-width: 768px) {
-  .nav-links {
-    position: static;
-    transform: none;
-    width: auto;
-    max-width: none;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    gap: var(--spacing-md);
-  }
-  
-  .nav-links:hover {
-    box-shadow: none;
+  .nav-links-desktop {
+    display: flex;
   }
 }
 
@@ -220,14 +143,6 @@
   padding: 0.5rem 0.25rem;
   position: relative;
   transition: color var(--transition-fast);
-}
-
-@media (max-width: 767px) {
-  .nav-link {
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
-    padding: 0.4rem 0.2rem;
-  }
 }
 
 .nav-link::after {
@@ -261,10 +176,10 @@
 .nav-link.active::after {
   transform: scaleX(1);
   transform-origin: left;
-  height: 2px; /* slightly thicker active line */
+  height: 2px;
 }
 
-/* Solder Pad CV Button */
+/* ===== Solder Pad CV Button ===== */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -326,15 +241,87 @@
   color: var(--bg-base);
 }
 
+/* ===== Mobile Bottom Tab Bar (app-style) ===== */
+.mobile-tab-bar {
+  display: none;
+}
+
 @media (max-width: 767px) {
-  .cv-btn {
-    width: 32px;
-    height: 32px;
+  .mobile-tab-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    z-index: 1000;
+    background-color: rgba(11, 13, 10, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(168, 194, 76, 0.2);
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.5);
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 4px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
-  .pad-solder {
-    inset: 4px;
+}
+
+.tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab-icon {
+  color: var(--text-muted);
+  transition: color 0.2s ease, filter 0.2s ease;
+}
+
+.tab-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+
+/* Active tab state */
+.tab-btn.active .tab-icon {
+  color: var(--olive-signal);
+  filter: drop-shadow(0 0 4px rgba(168, 194, 76, 0.6));
+}
+
+.tab-btn.active .tab-label {
+  color: var(--olive-signal);
+}
+
+.tab-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background-color: var(--olive-signal);
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 0 6px var(--olive-signal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-package:hover {
+    transform: none;
   }
-  .cv-btn-text {
-    font-size: 0.6rem;
+  .cv-btn:hover {
+    transform: none;
   }
 }

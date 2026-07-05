@@ -85,14 +85,7 @@ a {
   z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding-left: 36px;
-    padding-right: 16px;
-  }
-}
-
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .container {
     padding: 0 var(--spacing-md);
   }

@@ -10,6 +10,12 @@
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .circuit-trace-container {
+    opacity: 0.15;
+  }
+}
+
 
 .circuit-trace-svg {
   display: block;
