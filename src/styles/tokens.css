@@ -2,15 +2,15 @@
 
 :root {
   /* Color Palette */
-  --bg-base: #060705;          /* Page background — premium pitch-black with olive undertone */
-  --bg-panel: #0d100b;         /* Card / panel surface, slightly lighter and very clean */
-  --olive-primary: #6c7d3d;    /* Primary brand olive — brighter for better line visibility */
-  --olive-signal: #a8c24c;     /* Bright "trace" olive-lime — active states, glow */
+  --bg-base: #030403;          /* Page background — deeper pitch black with olive undertone */
+  --bg-panel: #080a07;         /* Card / panel surface, darker and more premium */
+  --olive-primary: #5b6b2c;    /* Primary brand olive — slightly muted for a darker feel */
+  --olive-signal: #7e9432;     /* Active olive-lime — still vibrant but deeper */
   --text-primary: #eae7da;     /* Main body text — warm off-white */
-  --text-muted: #9ba187;       /* Secondary text — lighter and higher contrast for readability */
-  --copper-accent: #c98f4a;    /* Rare accent for data/analytics moments (solder/copper) */
-  --copper-accent-glow: rgba(201, 143, 74, 0.35);
-  --olive-signal-glow: rgba(168, 194, 76, 0.35);
+  --text-muted: #81886f;       /* Secondary text — slightly deeper for balance */
+  --copper-accent: #9a6529;    /* Rare accent for data/analytics moments (solder/copper) */
+  --copper-accent-glow: rgba(154, 101, 41, 0.3);
+  --olive-signal-glow: rgba(126, 148, 50, 0.28);
 
   /* Typography */
   --font-display: 'Space Grotesk', sans-serif;

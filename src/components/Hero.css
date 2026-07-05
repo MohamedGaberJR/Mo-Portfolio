@@ -25,7 +25,7 @@
 .terminal-boot {
   width: 100%;
   max-width: 500px;
-  background-color: #0b0d0a;
+  background-color: #050705;
   border: 1px solid var(--olive-primary);
   border-radius: var(--border-radius-sm);
   font-family: var(--font-mono);

@@ -43,6 +43,12 @@
   z-index: 2;
 }
 
+@media (min-width: 992px) {
+  .about-specs {
+    margin-top: 1.25rem;
+  }
+}
+
 .spec-card {
   background-color: var(--bg-panel);
   border: 1px solid var(--olive-primary);
