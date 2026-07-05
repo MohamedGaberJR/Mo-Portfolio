@@ -64,11 +64,7 @@ export default function FeaturedProject({ project }) {
                         {/* Road line */}
                         <line x1="0" y1="68" x2="200" y2="68" stroke="rgba(108,125,61,0.15)" strokeWidth="1" strokeDasharray="8 4"/>
                         {/* Car body */}
-                        <path d="M 30 52 Q 38 38, 55 34 L 85 34 Q 100 20, 130 24 L 158 36 Q 175 42, 175 56 L 30 56 Z" fill="rgba(168, 194, 76, 0.06)" stroke="var(--olive-signal)" strokeWidth="1.2"/>
-                        {/* Roof */}
-                        <path d="M 82 34 L 120 34 L 112 22 H 88 Z" fill="rgba(168, 194, 76, 0.12)" stroke="var(--olive-signal)" strokeWidth="0.8"/>
-                        {/* Rear window */}
-                        <path d="M 58 34 L 80 34 L 82 22 H 70 Q 60 28, 58 34 Z" fill="rgba(168, 194, 76, 0.08)" stroke="var(--olive-signal)" strokeWidth="0.7"/>
+                        <path d="M 30 52 Q 38 36, 56 32 L 82 32 Q 94 22, 114 24 L 145 29 Q 167 32, 175 44 L 175 56 Q 168 60, 156 60 L 45 60 Q 34 60, 30 52 Z" fill="rgba(168, 194, 76, 0.06)" stroke="var(--olive-signal)" strokeWidth="1.2" strokeLinejoin="round"/>
                         {/* Front wheels */}
                         <circle cx="60" cy="56" r="10" fill="#080a06" stroke="var(--olive-signal)" strokeWidth="1.2"/>
                         <circle cx="60" cy="56" r="5" fill="none" stroke="var(--olive-signal)" strokeWidth="0.6" strokeDasharray="2 2"/>
