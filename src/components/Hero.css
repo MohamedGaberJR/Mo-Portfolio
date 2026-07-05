@@ -282,7 +282,7 @@
 
 @media (max-width: 768px) {
   .trace-anchor {
-    left: 20px;
+    left: -12px;
     top: 0;
   }
 }
@@ -323,7 +323,7 @@
 
 @media (max-width: 1024px) {
   .trace-anchor {
-    left: 10px;
+    left: -20px;
   }
 }
 
