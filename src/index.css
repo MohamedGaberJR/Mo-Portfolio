@@ -19,6 +19,7 @@ html {
 body {
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
   /* PCB Silkscreen grid pattern in background */
   background-image: 
     linear-gradient(rgba(107, 122, 63, 0.02) 1px, transparent 1px),
@@ -78,7 +79,14 @@ a {
   z-index: 2;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+  .container {
+    padding-left: 36px;
+    padding-right: 16px;
+  }
+}
+
+@media (min-width: 769px) {
   .container {
     padding: 0 var(--spacing-md);
   }
