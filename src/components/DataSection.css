@@ -1,0 +1,218 @@
+.data-section {
+  position: relative;
+  border-top: 1px solid rgba(107, 122, 63, 0.1);
+  background-color: rgba(20, 23, 16, 0.3); /* Slightly lighter base */
+}
+
+.data-container {
+  position: relative;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .data-grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+.data-info {
+  z-index: 2;
+}
+
+.eyebrow-copper {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-eyebrow);
+  color: var(--copper-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--spacing-xs);
+  display: block;
+}
+
+.title-copper {
+  color: var(--text-primary);
+}
+
+.data-desc {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-muted);
+}
+
+.data-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.data-highlight-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.highlight-icon-copper {
+  color: var(--copper-accent);
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.data-highlight-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.data-highlight-item p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Copper Dashboard Visual */
+.data-visual {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-board {
+  width: 100%;
+  max-width: 380px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--copper-accent);
+  border-radius: var(--border-radius-md);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(201, 143, 74, 0.05);
+  transition: all var(--transition-normal);
+}
+
+.dashboard-board:hover {
+  box-shadow: 0 10px 40px var(--copper-accent-glow);
+}
+
+.board-header {
+  background-color: rgba(201, 143, 74, 0.08);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(201, 143, 74, 0.2);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--copper-accent);
+}
+
+.dashboard-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Interactive SVG line chart */
+.chart-container {
+  position: relative;
+  background-color: #0d0f0c;
+  border: 1px solid rgba(201, 143, 74, 0.15);
+  border-radius: var(--border-radius-sm);
+  padding: 0.5rem;
+}
+
+.analytics-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-dot {
+  fill: var(--bg-panel);
+  stroke: var(--copper-accent);
+  stroke-width: 2px;
+  transition: fill var(--transition-fast), r var(--transition-fast);
+}
+
+.chart-dot-group:hover .chart-dot {
+  fill: var(--copper-accent);
+  r: 7px;
+}
+
+.chart-tooltip {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background-color: rgba(26, 30, 21, 0.95);
+  border: 1px solid var(--copper-accent);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  min-height: 48px;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltip-value {
+  font-size: 0.7rem;
+  color: var(--copper-accent);
+  font-weight: 700;
+}
+
+.tooltip-desc {
+  font-size: 0.6rem;
+  color: var(--text-primary);
+  margin-top: 0.1rem;
+}
+
+/* Metrics grid */
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.stat-pill-copper {
+  background-color: rgba(201, 143, 74, 0.05);
+  border: 1px dashed rgba(201, 143, 74, 0.25);
+  border-radius: var(--border-radius-sm);
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-lbl-copper {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.stat-val-copper {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--copper-accent);
+}
+
+.board-footer {
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 1rem;
+  border-top: 1px solid rgba(201, 143, 74, 0.1);
+  text-align: center;
+}
+
+.footer-silk-copper {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}

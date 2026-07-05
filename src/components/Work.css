@@ -1,0 +1,38 @@
+.work-section {
+  position: relative;
+  border-top: 1px solid rgba(107, 122, 63, 0.1);
+}
+
+.featured-wrapper {
+  margin-bottom: var(--spacing-lg);
+}
+
+.other-projects-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.sub-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.header-divider-line {
+  flex: 1;
+  height: 1px;
+  background-image: linear-gradient(90deg, rgba(107, 122, 63, 0.3), transparent);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  max-width: 800px;
+  margin: 0 auto;
+}

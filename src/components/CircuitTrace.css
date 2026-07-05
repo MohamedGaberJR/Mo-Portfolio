@@ -1,0 +1,115 @@
+.circuit-trace-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.circuit-trace-svg {
+  display: block;
+}
+
+/* Trace Lines */
+.trace-line-bg {
+  stroke: var(--olive-primary);
+  stroke-width: 1.5px;
+  stroke-opacity: 0.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trace-line-active {
+  stroke: var(--olive-signal);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px var(--olive-signal-glow));
+}
+
+/* Solder Pad Nodes */
+.node-group {
+  transition: all var(--transition-normal);
+}
+
+.node-ring {
+  fill: var(--bg-base);
+  stroke: var(--olive-primary);
+  stroke-width: 2px;
+  transition: stroke var(--transition-normal), stroke-width var(--transition-normal), fill var(--transition-normal);
+}
+
+.node-core {
+  fill: var(--bg-panel);
+  stroke: var(--olive-primary);
+  stroke-width: 1px;
+  transition: fill var(--transition-normal), stroke var(--transition-normal);
+}
+
+/* Active states — use CSS drop-shadow instead of SVG filter to avoid white box */
+.node-group.active .node-ring {
+  stroke: var(--olive-signal);
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 8px rgba(168, 194, 76, 0.6));
+}
+
+.node-group.active .node-core {
+  fill: var(--olive-signal);
+  stroke: var(--olive-signal);
+}
+
+/* Copper / Data variant for nodes */
+.node-group.copper .node-ring {
+  stroke: rgba(201, 143, 74, 0.4);
+}
+
+.node-group.copper .node-core {
+  stroke: rgba(201, 143, 74, 0.4);
+}
+
+.node-group.copper.active .node-ring {
+  stroke: var(--copper-accent);
+  filter: drop-shadow(0 0 8px rgba(201, 143, 74, 0.6));
+}
+
+.node-group.copper.active .node-core {
+  fill: var(--copper-accent);
+  stroke: var(--copper-accent);
+}
+
+/* Pulsing halo around active nodes */
+.node-pulse {
+  fill: none;
+  stroke: var(--olive-signal);
+  stroke-opacity: 0.8;
+  stroke-width: 1px;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  transform-origin: center;
+}
+
+.node-group.copper .node-pulse {
+  stroke: var(--copper-accent);
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  80%, 100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Disable pulse if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .node-pulse {
+    animation: none;
+    display: none;
+  }
+}

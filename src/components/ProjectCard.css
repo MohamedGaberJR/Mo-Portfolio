@@ -1,0 +1,195 @@
+.project-card {
+  background-color: var(--bg-panel);
+  border: 1px solid rgba(107, 122, 63, 0.2);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card:hover {
+  border-color: var(--olive-primary);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* PCB Corners */
+.card-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(107, 122, 63, 0.4);
+  pointer-events: none;
+  transition: border-color var(--transition-normal);
+}
+
+.project-card:hover .card-corner {
+  border-color: var(--olive-signal);
+}
+
+.corner-tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.corner-tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.corner-br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+/* Travelling Laser Pulse along Card Border */
+.card-pulse-line {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--olive-signal), transparent);
+  transition: left 0s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.project-card:hover .card-pulse-line {
+  opacity: 1;
+  left: 150%;
+  transition: left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px dashed rgba(107, 122, 63, 0.15);
+  padding-bottom: 0.75rem;
+}
+
+.card-header-icon {
+  color: var(--olive-primary);
+  transition: color var(--transition-fast);
+}
+
+.project-card:hover .card-header-icon {
+  color: var(--olive-signal);
+}
+
+.card-id {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* Card Body */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.card-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.card-role {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  background-color: rgba(107, 122, 63, 0.08);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.role-lbl {
+  color: var(--text-muted);
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.card-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-bullet-item {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.card-bullet-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--olive-primary);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast);
+}
+
+.project-card:hover .card-bullet-dot {
+  background-color: var(--olive-signal);
+}
+
+/* Card Footer & Tags */
+.card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(107, 122, 63, 0.15);
+}
+
+.card-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(107, 122, 63, 0.25);
+  color: var(--text-muted);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.project-card:hover .card-tag {
+  border-color: rgba(168, 194, 76, 0.4);
+  color: var(--text-primary);
+}
+
+/* Disable card laser pulse on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover .card-pulse-line {
+    animation: none;
+    opacity: 0;
+  }
+  .project-card {
+    transform: none !important;
+  }
+}
