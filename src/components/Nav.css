@@ -80,7 +80,7 @@
   text-shadow: 0 0 8px var(--olive-signal-glow);
 }
 
-/* Blinking status LED on microchip corner */
+/* Blinking status LED */
 .chip-led {
   position: absolute;
   top: 4px;
@@ -122,7 +122,7 @@
 .pin-right-2 { right: -5px; top: 17px; }
 .pin-right-3 { right: -5px; top: 27px; }
 
-/* ===== Desktop Navigation Links (inside top bar) ===== */
+/* ===== Desktop Navigation Links ===== */
 .nav-links-desktop {
   display: none;
   gap: var(--spacing-md);
@@ -167,7 +167,6 @@
   transform-origin: left;
 }
 
-/* Active Section State */
 .nav-link.active {
   color: var(--olive-signal);
   text-shadow: 0 0 8px var(--olive-signal-glow);
@@ -179,7 +178,7 @@
   height: 2px;
 }
 
-/* ===== Solder Pad CV Button ===== */
+/* ===== CV Button ===== */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -241,7 +240,9 @@
   color: var(--bg-base);
 }
 
-/* ===== Mobile Bottom Tab Bar (app-style) ===== */
+/* ============================================
+   MOBILE BOTTOM TAB BAR — Clean App Style
+   ============================================ */
 .mobile-tab-bar {
   display: none;
 }
@@ -253,110 +254,117 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 68px;
     z-index: 1000;
-    background: linear-gradient(180deg, rgba(11, 13, 10, 0.88) 0%, rgba(8, 10, 7, 0.96) 100%);
-    backdrop-filter: blur(20px) saturate(1.3);
-    -webkit-backdrop-filter: blur(20px) saturate(1.3);
-    border-top: 1px solid rgba(168, 194, 76, 0.12);
-    box-shadow: 
-      0 -4px 16px rgba(0, 0, 0, 0.4),
-      0 -1px 0 rgba(168, 194, 76, 0.06);
+    background-color: rgba(10, 12, 8, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(107, 122, 63, 0.15);
     justify-content: space-around;
-    align-items: center;
-    padding: 0 8px;
+    align-items: stretch;
+    height: 60px;
     padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  /* Scale down the top header MMG logo and CV button */
+  .chip-package {
+    width: 44px;
+    height: 28px;
+  }
+  .chip-die {
+    font-size: 0.75rem;
+  }
+  .chip-led {
+    top: 2px;
+    right: 2px;
+  }
+  .chip-pin {
+    width: 4px;
+  }
+  .pin-left-1 { left: -4px; top: 4px; }
+  .pin-left-2 { left: -4px; top: 11px; }
+  .pin-left-3 { left: -4px; top: 18px; }
+  .pin-right-1 { right: -4px; top: 4px; }
+  .pin-right-2 { right: -4px; top: 11px; }
+  .pin-right-3 { right: -4px; top: 18px; }
+
+  .cv-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .pad-solder {
+    inset: 4px;
+  }
+  .cv-btn-text {
+    font-size: 0.6rem;
   }
 }
 
-.tab-btn {
+/* Each tab button */
+.mob-tab {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
   gap: 4px;
-  padding: 8px 10px;
-  border-radius: 12px;
   text-decoration: none;
-  position: relative;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-              background-color 0.3s ease;
+  position: relative;
+  padding: 8px 0;
 }
 
-.tab-btn:active {
-  transform: scale(0.9);
+/* Icon */
+.mob-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(160, 170, 140, 0.35);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.tab-icon {
-  color: rgba(180, 190, 160, 0.4);
-  transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.tab-label {
+/* Label */
+.mob-tab-label {
   font-family: var(--font-mono);
   font-size: 0.5rem;
-  color: rgba(180, 190, 160, 0.35);
+  font-weight: 600;
+  color: rgba(160, 170, 140, 0.3);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.3s ease;
+  letter-spacing: 0.08em;
+  transition: color 0.3s ease;
 }
 
-/* Active tab state — smooth glow transition */
-.tab-btn.active {
-  background-color: rgba(168, 194, 76, 0.06);
-}
-
-.tab-btn.active .tab-icon {
+/* ---- Active state ---- */
+.mob-tab.active .mob-tab-icon {
   color: var(--olive-signal);
-  filter: drop-shadow(0 0 6px rgba(168, 194, 76, 0.5));
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-.tab-btn.active .tab-label {
+.mob-tab.active .mob-tab-label {
   color: var(--olive-signal);
 }
 
-/* Top indicator bar with smooth width animation */
-.tab-btn::before {
+/* Active indicator dot */
+.mob-tab.active::after {
   content: '';
   position: absolute;
-  top: -1px;
+  bottom: 6px;
   left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 24px;
-  height: 2px;
-  background: var(--olive-signal);
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 2px 8px rgba(168, 194, 76, 0.4);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity 0.3s ease;
-  opacity: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: var(--olive-signal);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--olive-signal);
 }
 
-.tab-btn.active::before {
-  transform: translateX(-50%) scaleX(1);
-  opacity: 1;
+/* Tap feedback */
+.mob-tab:active .mob-tab-icon {
+  transform: scale(0.85);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .chip-package:hover {
-    transform: none;
-  }
-  .cv-btn:hover {
-    transform: none;
-  }
-  .tab-btn:active {
-    transform: none;
-  }
-  .tab-btn.active .tab-icon {
-    transform: none;
-  }
-  .tab-btn::before {
+  .mob-tab .mob-tab-icon,
+  .mob-tab-label {
     transition: none;
   }
 }
-
