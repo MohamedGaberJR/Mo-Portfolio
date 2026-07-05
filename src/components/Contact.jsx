@@ -74,9 +74,6 @@ export default function Contact() {
             </a>
           </div>
         </div>
-        
-        {/* Dynamic trace anchor for Contact section — now at the very end of the page */}
-        <div className="trace-anchor" data-id="contact" id="anchor-contact"></div>
       </div>
     </footer>
   );
