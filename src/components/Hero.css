@@ -282,7 +282,37 @@
 
 @media (max-width: 768px) {
   .trace-anchor {
-    left: -12px;
+    top: 50%;
+    left: 50%;
+  }
+
+  #anchor-hero {
+    left: 50%;
+    top: 50%;
+  }
+
+  #anchor-about {
+    left: 30%;
+    top: 0;
+  }
+
+  #anchor-work {
+    left: 70%;
+    top: 0;
+  }
+
+  #anchor-data {
+    left: 25%;
+    top: 0;
+  }
+
+  #anchor-skills {
+    left: 75%;
+    top: 0;
+  }
+
+  #anchor-contact {
+    left: 50%;
     top: 0;
   }
 }
@@ -321,7 +351,7 @@
   60% { transform: translateY(-2px); }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .trace-anchor {
     left: -20px;
   }

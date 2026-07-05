@@ -69,9 +69,6 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            {/* Trace anchor */}
-            <div className="trace-anchor" data-id="hero" id="anchor-hero"></div>
-
             {/* Left: Text and CTAs */}
             <div className="hero-main">
               <div className="hero-eyebrow-container">
@@ -96,6 +93,8 @@ export default function Hero() {
             {/* Right: Large circular profile image */}
             <div className="hero-profile">
               <div className="hero-avatar-wrapper">
+                {/* Trace anchor starting from behind the pic */}
+                <div className="trace-anchor" data-id="hero" id="anchor-hero"></div>
                 {/* Decorative orbit ring */}
                 <div className="avatar-orbit-ring"></div>
                 {/* Main bezel */}

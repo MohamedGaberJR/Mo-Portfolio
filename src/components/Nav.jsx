@@ -12,18 +12,25 @@ export default function Nav({ activeSection }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /* Mobile tabs — only 4 key sections for a clean layout */
+  /* Mobile tabs — About, Work, Data, Skills, Contact */
   const mobileTabs = [
-    { id: 'hero', label: 'Home', href: '#hero', icon: (
+    { id: 'about', label: 'About', href: '#about', icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
       </svg>
     )},
     { id: 'work', label: 'Work', href: '#work', icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
         <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+      </svg>
+    )},
+    { id: 'data', label: 'Data', href: '#data', icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
       </svg>
     )},
     { id: 'skills', label: 'Skills', href: '#skills', icon: (
@@ -115,8 +122,7 @@ export default function Nav({ activeSection }) {
       {/* Mobile bottom tab bar */}
       <div className="mobile-tab-bar" role="navigation" aria-label="Mobile navigation">
         {mobileTabs.map(item => {
-          const isActive = activeSection === item.id || 
-            (item.id === 'work' && (activeSection === 'work' || activeSection === 'about' || activeSection === 'data'));
+          const isActive = activeSection === item.id;
           return (
             <a
               key={item.id}
