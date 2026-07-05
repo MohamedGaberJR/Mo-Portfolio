@@ -11,6 +11,20 @@
   align-items: center;
 }
 
+@media (max-width: 767px) {
+  .navbar {
+    top: auto;
+    bottom: 0;
+    height: 60px;
+    background-color: rgba(11, 13, 10, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(168, 194, 76, 0.25);
+    border-bottom: none;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+  }
+}
+
 .navbar.scrolled {
   background-color: rgba(26, 30, 21, 0.85);
   backdrop-filter: blur(12px);
@@ -51,6 +65,13 @@
   align-items: center;
   justify-content: center;
   transition: all var(--transition-fast);
+}
+
+@media (max-width: 767px) {
+  .chip-package {
+    width: 44px;
+    height: 28px;
+  }
 }
 
 .chip-package:hover {
@@ -115,28 +136,51 @@
 .pin-right-2 { right: -5px; top: 17px; }
 .pin-right-3 { right: -5px; top: 27px; }
 
+@media (max-width: 767px) {
+  .chip-die {
+    font-size: 0.75rem;
+  }
+  .chip-led {
+    top: 2px;
+    right: 2px;
+  }
+  .chip-pin {
+    width: 4px;
+  }
+  .pin-left-1 { left: -4px; top: 4px; }
+  .pin-left-2 { left: -4px; top: 12px; }
+  .pin-left-3 { left: -4px; top: 20px; }
+  .pin-right-1 { right: -4px; top: 4px; }
+  .pin-right-2 { right: -4px; top: 12px; }
+  .pin-right-3 { right: -4px; top: 20px; }
+}
+
 /* Navigation Links */
 .nav-links {
   display: flex;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 440px;
-  background-color: rgba(11, 13, 10, 0.85);
-  border: 1.5px solid rgba(168, 194, 76, 0.25);
-  border-radius: 30px;
-  padding: 0.4rem 0.75rem;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.6), 
-    0 0 15px rgba(168, 194, 76, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .nav-links {
+    position: static;
+    transform: none;
+    width: auto;
+    max-width: none;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    gap: var(--spacing-md);
+  }
 }
 
 .nav-links:hover {
@@ -280,4 +324,17 @@
 
 .cv-btn:hover .cv-btn-text {
   color: var(--bg-base);
+}
+
+@media (max-width: 767px) {
+  .cv-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .pad-solder {
+    inset: 4px;
+  }
+  .cv-btn-text {
+    font-size: 0.6rem;
+  }
 }

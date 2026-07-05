@@ -30,6 +30,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 80px;
+  }
+}
+
 /* Scrollbar Customization */
 ::-webkit-scrollbar {
   width: 10px;
