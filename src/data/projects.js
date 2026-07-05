@@ -18,17 +18,17 @@ export const projects = [
     ]
   },
   {
-    id: 'tradelink',
-    title: 'TradeLink',
-    subtitle: 'Oracle Database System Analysis & Design',
-    description: 'A comprehensive enterprise database system engineered for international trade logistics and supply chain tracking, optimizing query performance and relational integrity.',
-    role: 'Database Lead & System Analyst',
+    id: 'dashboards',
+    title: 'BI Dashboards',
+    subtitle: 'Power BI & Tableau Reporting',
+    description: 'I’ve built a lot of dashboards using Power BI and Tableau, and I keep refining them into clear, insightful stories that help teams make better decisions.',
+    role: 'Data Analyst & BI Developer',
     featured: false,
-    tech: ['Oracle SQL', 'ERD Design', 'CRUD Matrix', 'Database Administration'],
+    tech: ['Power BI', 'Tableau', 'DAX', 'SQL', 'Dashboard Design'],
     bullets: [
-      'Led the conceptual, logical, and physical database design, establishing relational integrity across 20+ tables.',
-      'Created thorough ERDs, complete Data Dictionaries, and a detailed CRUD Matrix to map operations.',
-      'Wrote and optimized complex SQL queries, views, triggers, and stored procedures to handle high-concurrency requests.'
+      'Created multiple interactive dashboards focused on KPI tracking, business performance, and executive reporting.',
+      'Designed clear visuals and layouts that make complex data easier to understand at a glance.',
+      'Turned raw data into actionable insights using strong data modeling and thoughtful dashboard storytelling.'
     ]
   }
 ];
