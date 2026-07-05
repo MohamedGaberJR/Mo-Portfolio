@@ -30,5 +30,19 @@ export const projects = [
       'Designed clear visuals and layouts that make complex data easier to understand at a glance.',
       'Turned raw data into actionable insights using strong data modeling and thoughtful dashboard storytelling.'
     ]
+  },
+  {
+    id: 'tradelink',
+    title: 'TradeLink',
+    subtitle: 'Business Material Exchange System',
+    description: 'Co-built an Oracle-based business exchange platform that helps small companies access resources, mentorship, and supply-chain collaboration tools.',
+    role: 'Database Lead & System Analyst',
+    featured: false,
+    tech: ['Oracle SQL', 'ERD Design', 'System Analysis', 'Database Modeling'],
+    bullets: [
+      'Designed and implemented the full Oracle database architecture, including ERDs, a data dictionary, CRUD matrix, and relational schema.',
+      'Led the system analysis process with use cases, user stories, activity diagrams, sequence diagrams, class diagrams, and data flow diagrams.',
+      'Built the database layer to support secure material exchange workflows and consistent supply-chain reporting.'
+    ]
   }
 ];

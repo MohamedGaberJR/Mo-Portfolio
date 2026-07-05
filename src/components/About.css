@@ -41,11 +41,15 @@
 .about-specs {
   width: 100%;
   z-index: 2;
+  display: grid;
+  gap: 1rem;
 }
 
 @media (min-width: 992px) {
   .about-specs {
     margin-top: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
   }
 }
 
@@ -61,6 +65,60 @@
 
 .spec-card:hover {
   border-color: var(--olive-signal);
+}
+
+.trade-card {
+  min-height: 100%;
+}
+
+.trade-card-header {
+  background-color: rgba(168, 194, 76, 0.08);
+}
+
+.trade-card-body {
+  padding: 1rem;
+}
+
+.trade-title-block {
+  margin-bottom: 0.9rem;
+}
+
+.trade-title {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.trade-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.trade-bullets {
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+  padding: 0;
+  margin: 0;
+}
+
+.trade-bullets li {
+  position: relative;
+  padding-left: 0.95rem;
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.trade-bullets li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--olive-signal);
 }
 
 .spec-card-header {
