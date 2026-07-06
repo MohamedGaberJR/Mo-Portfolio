@@ -19,6 +19,25 @@
     grid-template-columns: 1.2fr 1fr;
     gap: var(--spacing-lg);
   }
+
+  /* keep the specs container as the positioning context */
+  .about-specs {
+    position: static;
+  }
+
+  /* absolutely position the spec card inside the right column so it
+     doesn't affect the left paragraph width. Card stays compact but
+     text sizes are unchanged. */
+  .spec-card {
+    /* keep the card in-flow but right-aligned inside its column so it
+       doesn't overlap the left paragraph */
+    position: relative;
+    right: auto;
+    top: auto;
+    width: clamp(480px, 36vw, 640px);
+    margin: 0 0 0 auto;
+    z-index: 2;
+  }
 }
 
 .about-bio {
@@ -58,10 +77,10 @@
 .spec-card {
   background-color: var(--bg-panel);
   border: 1px solid var(--olive-primary);
-  border-radius: var(--border-radius-md);
+  border-radius: 6px;
   font-family: var(--font-mono);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
   transition: border-color var(--transition-normal);
 }
 
@@ -125,11 +144,11 @@
 
 .spec-card-header {
   background-color: rgba(107, 122, 63, 0.08);
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.9rem;
   border-bottom: 1px solid rgba(107, 122, 63, 0.15);
   display: flex;
   justify-content: space-between;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -144,14 +163,14 @@
 }
 
 .spec-card-body {
-  padding: 1rem;
+  padding: 0.9rem;
 }
 
 .spec-row {
   display: flex;
   flex-direction: column;
-  padding: 0.75rem 0;
-  border-bottom: 1px dashed rgba(107, 122, 63, 0.15);
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(107, 122, 63, 0.12);
 }
 
 .spec-row:last-child {
@@ -166,8 +185,32 @@
   }
 }
 
+/* keep the DEGREE value on a single line by giving it more room and reducing its size */
+@media (min-width: 480px) {
+  .spec-row-degree .spec-label {
+    flex-basis: 28%;
+  }
+
+  .spec-row-degree .spec-value {
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+  }
+}
+
+/* keep the CORES value on one line */
+@media (min-width: 480px) {
+  .spec-row-cores .spec-label {
+    flex-basis: 28%;
+  }
+
+  .spec-row-cores .spec-value {
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+  }
+}
+
 .spec-label {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -193,8 +236,9 @@
   .spec-value {
     text-align: right;
     flex: 1;
-    /* keep long values from overflowing the layout */
-    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -206,7 +250,7 @@
 .spec-card-footer {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 0.5rem 1rem;
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
+    border-top: 1px solid rgba(107, 122, 63, 0.10);
   text-align: center;
 }
 

@@ -32,15 +32,15 @@ export default function About() {
                 <span className="spec-status">STATUS: CALIBRATED</span>
               </div>
               <div className="spec-card-body">
-                <div className="spec-row">
+                <div className="spec-row spec-row-degree">
                   <span className="spec-label">DEGREE</span>
-                  <span className="spec-value">B.Sc. Business Information Systems (AAST Cairo)</span>
+                  <span className="spec-value">B.Sc. Business Information Systems</span>
                 </div>
                 <div className="spec-row">
                   <span className="spec-label">GPA SCORE</span>
                   <span className="spec-value highlight-gpa">3.89 / 4.00 (Excellent with Honor)</span>
                 </div>
-                <div className="spec-row">
+                <div className="spec-row spec-row-cores">
                   <span className="spec-label">CORES</span>
                   <span className="spec-value">React Native · JavaScript · SQL · Power BI</span>
                 </div>
