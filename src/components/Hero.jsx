@@ -49,6 +49,8 @@ export default function Hero() {
       </div>
 
       <div className="container hero-container">
+        {/* Trace anchor starting from the top-left of the hero container on desktop, centered on mobile */}
+        <div className="trace-anchor" data-id="hero" id="anchor-hero"></div>
         {!bootFinished ? (
           <div className="terminal-boot">
             <div className="terminal-header">
@@ -93,8 +95,6 @@ export default function Hero() {
             {/* Right: Large circular profile image */}
             <div className="hero-profile">
               <div className="hero-avatar-wrapper">
-                {/* Trace anchor starting from behind the pic */}
-                <div className="trace-anchor" data-id="hero" id="anchor-hero"></div>
                 {/* Decorative orbit ring */}
                 <div className="avatar-orbit-ring"></div>
                 {/* Main bezel */}

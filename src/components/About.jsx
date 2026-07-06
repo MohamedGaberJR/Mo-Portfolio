@@ -42,7 +42,7 @@ export default function About() {
                 </div>
                 <div className="spec-row spec-row-cores">
                   <span className="spec-label">CORES</span>
-                  <span className="spec-value">React Native · JavaScript · SQL · Power BI</span>
+                  <span className="spec-value">React Native · Python · SQL · Power BI</span>
                 </div>
                 <div className="spec-row">
                   <span className="spec-label">ORIGIN PORT</span>
@@ -58,7 +58,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* TradeLink card removed */}
           </div>
         </div>
       </div>

@@ -20,21 +20,16 @@
     gap: var(--spacing-lg);
   }
 
-  /* keep the specs container as the positioning context */
   .about-specs {
-    position: static;
+    position: relative;
   }
 
-  /* absolutely position the spec card inside the right column so it
-     doesn't affect the left paragraph width. Card stays compact but
-     text sizes are unchanged. */
   .spec-card {
-    /* keep the card in-flow but right-aligned inside its column so it
-       doesn't overlap the left paragraph */
     position: relative;
     right: auto;
     top: auto;
-    width: clamp(480px, 36vw, 640px);
+    width: 100%;
+    max-width: 520px;
     margin: 0 0 0 auto;
     z-index: 2;
   }
@@ -67,8 +62,6 @@
 @media (min-width: 992px) {
   .about-specs {
     margin-top: 1.25rem;
-    /* single column for spec cards so a single card stretches to fill
-       the right column of the About layout */
     grid-template-columns: 1fr;
     align-items: start;
   }
@@ -181,31 +174,7 @@
   .spec-row {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-  }
-}
-
-/* keep the DEGREE value on a single line by giving it more room and reducing its size */
-@media (min-width: 480px) {
-  .spec-row-degree .spec-label {
-    flex-basis: 28%;
-  }
-
-  .spec-row-degree .spec-value {
-    font-size: 0.85rem;
-    flex: 1 1 auto;
-  }
-}
-
-/* keep the CORES value on one line */
-@media (min-width: 480px) {
-  .spec-row-cores .spec-label {
-    flex-basis: 28%;
-  }
-
-  .spec-row-cores .spec-value {
-    font-size: 0.85rem;
-    flex: 1 1 auto;
+    align-items: flex-start;
   }
 }
 
@@ -221,8 +190,8 @@
 @media (min-width: 480px) {
   .spec-label {
     margin-bottom: 0;
-    /* reserve space for the label so the value can use remaining width */
-    flex-basis: 40%;
+    flex-basis: 120px;
+    flex-shrink: 0;
   }
 }
 
@@ -230,15 +199,15 @@
   font-size: 0.85rem;
   color: var(--text-primary);
   text-align: left;
+  line-height: 1.4;
 }
 
 @media (min-width: 480px) {
   .spec-value {
     text-align: right;
     flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
   }
 }
 

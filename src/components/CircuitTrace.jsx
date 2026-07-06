@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import './CircuitTrace.css';
 
 export default function CircuitTrace({ activeSection }) {
@@ -7,12 +7,16 @@ export default function CircuitTrace({ activeSection }) {
   const [pathD, setPathD] = useState('');
   const containerRef = useRef(null);
 
-  // Track page scroll progress
+  // Track native scroll progress of the viewport
   const { scrollYProgress } = useScroll();
-  // Smooth out the scroll progress mapping with silkier values
-  const smoothProgress = useSpring(scrollYProgress, {
-    damping: 28,
-    stiffness: 70,
+
+  // Scale the progress so it reaches 100% (1.0) slightly before the absolute bottom of the page (at 95% scroll)
+  const scaledProgress = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
+
+  // Smooth out the scroll progress mapping with silky spring settings
+  const smoothProgress = useSpring(scaledProgress, {
+    damping: 30,
+    stiffness: 80,
     restDelta: 0.001
   });
 
