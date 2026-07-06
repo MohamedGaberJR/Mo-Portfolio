@@ -58,23 +58,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="spec-card trade-card">
-              <div className="spec-card-header trade-card-header">
-                <span className="spec-model">PROJECT MODULE: TRADELINK</span>
-                <span className="spec-status">STATUS: ANALYZED</span>
-              </div>
-              <div className="trade-card-body">
-                <div className="trade-title-block">
-                  <h3 className="trade-title">TradeLink — Business Material Exchange System</h3>
-                  <p className="trade-subtitle">Oracle DB · System Analysis &amp; Design</p>
-                </div>
-                <ul className="trade-bullets">
-                  <li>Co-developed a comprehensive online platform designed to support small businesses with practical resources, expert guidance, and valuable networking opportunities, serving as the database lead on the project.</li>
-                  <li>Designed and implemented the full database architecture in Oracle, including ERD development, a data dictionary, a CRUD matrix, and a relational schema.</li>
-                  <li>Delivered complete system analysis documentation, including use cases, user stories, activity diagrams, sequence diagrams, class diagrams, and DFDs.</li>
-                </ul>
-              </div>
-            </div>
+            {/* TradeLink card removed */}
           </div>
         </div>
       </div>
