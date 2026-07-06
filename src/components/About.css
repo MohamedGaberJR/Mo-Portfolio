@@ -48,7 +48,9 @@
 @media (min-width: 992px) {
   .about-specs {
     margin-top: 1.25rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* single column for spec cards so a single card stretches to fill
+       the right column of the About layout */
+    grid-template-columns: 1fr;
     align-items: start;
   }
 }
@@ -176,6 +178,8 @@
 @media (min-width: 480px) {
   .spec-label {
     margin-bottom: 0;
+    /* reserve space for the label so the value can use remaining width */
+    flex-basis: 40%;
   }
 }
 
@@ -188,6 +192,9 @@
 @media (min-width: 480px) {
   .spec-value {
     text-align: right;
+    flex: 1;
+    /* keep long values from overflowing the layout */
+    word-wrap: break-word;
   }
 }
 
