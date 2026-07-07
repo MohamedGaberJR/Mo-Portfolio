@@ -59,7 +59,7 @@ export default function DataSection() {
                 <span className="board-title">COPPER REGISTRY INTERFACE</span>
                 <span className="board-freq">4.1 GHz</span>
               </div>
-              
+
               <div className="dashboard-body">
                 {/* Custom SVG Line Chart */}
                 <div className="chart-container">
@@ -92,8 +92,8 @@ export default function DataSection() {
 
                     {/* Interactive points */}
                     {chartPoints.map((pt, idx) => (
-                      <g 
-                        key={idx} 
+                      <g
+                        key={idx}
                         className="chart-dot-group"
                         onMouseEnter={() => setHoveredPoint(pt)}
                         onMouseLeave={() => setHoveredPoint(null)}
