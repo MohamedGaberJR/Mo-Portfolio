@@ -1,8 +1,21 @@
 .contact-section {
   position: relative;
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
-  background-color: #050705;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(126, 148, 50, 0.06), transparent 60%),
+    var(--bg-base);
   padding: var(--spacing-lg) 0;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
+  opacity: 0.35;
 }
 
 @media (min-width: 768px) {
@@ -20,6 +33,10 @@
   margin: 0 auto var(--spacing-lg) auto;
   text-align: center;
   z-index: 2;
+}
+
+.contact-title::after {
+  display: none;
 }
 
 .contact-intro {
@@ -44,24 +61,43 @@
 
 .contact-link-card {
   background-color: var(--bg-panel);
-  border: 1px solid rgba(107, 122, 63, 0.2);
+  border: 1px solid var(--border-subtle);
   padding: 1.25rem;
   border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   gap: 1rem;
   transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-link-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--olive-signal), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
 
 .contact-link-card:hover {
-  border-color: var(--olive-signal);
-  box-shadow: 0 4px 15px var(--olive-signal-glow);
-  transform: translateY(-2px);
+  border-color: var(--border-active);
+  box-shadow: var(--panel-glow);
+  transform: translateY(-3px);
+}
+
+.contact-link-card:hover::before {
+  opacity: 1;
 }
 
 .contact-icon {
   color: var(--olive-primary);
   transition: color var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .contact-link-card:hover .contact-icon {
@@ -71,6 +107,7 @@
 .contact-link-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .contact-label {
@@ -87,34 +124,20 @@
   word-break: break-all;
 }
 
-/* Footer Terminal Signoff */
 .footer-terminal {
   max-width: 500px;
   margin: 0 auto var(--spacing-md) auto;
-  border: 1px solid rgba(107, 122, 63, 0.2);
-  background-color: var(--bg-base);
-  border-radius: var(--border-radius-sm);
-  font-family: var(--font-mono);
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.footer-terminal .terminal-header {
-  background-color: var(--bg-panel);
-  padding: 0.4rem 0.75rem;
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-bottom: 1px solid rgba(107, 122, 63, 0.15);
-}
-
-.footer-terminal .terminal-body {
+.footer-terminal .terminal-panel-body {
   padding: 0.75rem 1rem;
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+.footer-terminal .terminal-icon {
+  color: var(--olive-signal);
 }
 
 .terminal-log-row-prompt {
@@ -126,9 +149,12 @@
   animation: blink 1s step-end infinite;
 }
 
-/* Footer Meta details */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 .footer-meta {
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
+  border-top: 1px solid var(--border-subtle);
   padding-top: var(--spacing-sm);
   display: flex;
   flex-direction: column;

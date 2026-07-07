@@ -88,89 +88,124 @@ export default function SplashScreen({ onComplete }) {
         if (isExiting) onComplete?.();
       }}
     >
-      <div className="splash-stage">
-        <svg className="splash-svg" viewBox="0 0 320 320" aria-hidden="true">
-          {traces.map((trace, index) => (
-            <motion.path
-              key={trace.id}
-              d={trace.d}
-              className="splash-trace"
-              initial={{ pathLength: 0, opacity: 0.25 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{
-                duration: 0.72,
-                ease: 'easeOut',
-                delay: index * 0.08,
-              }}
-            />
-          ))}
+      <div className="splash-ambient" aria-hidden="true" />
+      <div className="splash-grid" aria-hidden="true" />
+      <div className="splash-scanlines" aria-hidden="true" />
 
-          {nodes.map((node, index) => {
-            const isActive = index < activeNodes;
-            return (
-              <g key={node.id} className={`splash-node-group ${isActive ? 'active' : ''}`}>
-                <circle cx={node.x} cy={node.y} r="10" className="splash-node-ring" />
-                <motion.circle
-                  cx={node.x}
-                  cy={node.y}
-                  r="5"
-                  className="splash-node-core"
-                  initial={{ scale: 0.6, opacity: 0.4 }}
-                  animate={{
-                    scale: isActive ? 1 : 0.75,
-                    opacity: isActive ? 1 : 0.55,
-                  }}
-                  transition={{ duration: 0.22, ease: 'easeOut' }}
-                />
-              </g>
-            );
-          })}
-        </svg>
+      <div className="splash-boot-panel pcb-corners">
+        <span className="pcb-corner-bl" aria-hidden="true" />
+        <span className="pcb-corner-br" aria-hidden="true" />
 
-        <motion.div
-          className="splash-logo"
-          initial={{ scale: 0.82, opacity: 0 }}
-          animate={{
-            scale: showLogo ? 1 : 0.88,
-            opacity: showLogo ? 1 : 0.35,
-          }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <ChipLogo size="large" ledActive={showLogo} />
-        </motion.div>
+        <div className="splash-panel-header">
+          <span className="splash-panel-id">GABER-BOARD // BOOT</span>
+          <span className={`splash-panel-led ${showLogo ? 'active' : ''}`} />
+        </div>
+
+        <div className="splash-stage">
+          <svg className="splash-svg" viewBox="0 0 320 320" aria-hidden="true">
+            <circle cx={CENTER} cy={CENTER} r="88" className="splash-footprint" />
+            <circle cx={CENTER} cy={CENTER} r="56" className="splash-footprint-inner" />
+
+            {traces.map((trace, index) => (
+              <motion.path
+                key={trace.id}
+                d={trace.d}
+                className="splash-trace"
+                initial={{ pathLength: 0, opacity: 0.25 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{
+                  duration: 0.72,
+                  ease: 'easeOut',
+                  delay: index * 0.08,
+                }}
+              />
+            ))}
+
+            {nodes.map((node, index) => {
+              const isActive = index < activeNodes;
+              return (
+                <g key={node.id} className={`splash-node-group ${isActive ? 'active' : ''}`}>
+                  <circle cx={node.x} cy={node.y} r="10" className="splash-node-ring" />
+                  <motion.circle
+                    cx={node.x}
+                    cy={node.y}
+                    r="5"
+                    className="splash-node-core"
+                    initial={{ scale: 0.6, opacity: 0.4 }}
+                    animate={{
+                      scale: isActive ? 1 : 0.75,
+                      opacity: isActive ? 1 : 0.55,
+                    }}
+                    transition={{ duration: 0.22, ease: 'easeOut' }}
+                  />
+                  {isActive && (
+                    <motion.circle
+                      cx={node.x}
+                      cy={node.y}
+                      r="14"
+                      className="splash-node-pulse"
+                      initial={{ scale: 0.6, opacity: 0.8 }}
+                      animate={{ scale: 1.5, opacity: 0 }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
+                    />
+                  )}
+                </g>
+              );
+            })}
+          </svg>
+
+          <motion.div
+            className="splash-logo"
+            initial={{ scale: 0.82, opacity: 0 }}
+            animate={{
+              scale: showLogo ? 1 : 0.88,
+              opacity: showLogo ? 1 : 0.35,
+            }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="splash-logo-glow" aria-hidden="true" />
+            <ChipLogo size="large" ledActive={showLogo} />
+          </motion.div>
+        </div>
+
+        {!prefersReducedMotion && (
+          <div className="splash-bar" aria-hidden="true">
+            <span className="splash-bar-label">PWR</span>
+            <div className="splash-bar-track">
+              <motion.div
+                className="splash-bar-fill"
+                animate={{ scaleX: progress / 100 }}
+                transition={{ duration: 0.32, ease: 'easeOut' }}
+              />
+            </div>
+            <span className="splash-bar-value">{progress}%</span>
+          </div>
+        )}
+
+        {!prefersReducedMotion && (
+          <div className="splash-status" aria-live="polite">
+            <motion.p
+              className="splash-line"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: showLog ? [0, 0.35, 0.15, 0.7, 0.5, 1] : 0 }}
+              transition={{ duration: 0.45, times: [0, 0.15, 0.3, 0.5, 0.7, 1] }}
+            >
+              &gt; initializing board...
+            </motion.p>
+            <motion.p
+              className="splash-line active"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: showLog ? [0, 0.2, 0.1, 0.55, 0.85, 1] : 0 }}
+              transition={{ duration: 0.5, delay: 0.12, times: [0, 0.15, 0.3, 0.5, 0.75, 1] }}
+            >
+              &gt; profile loaded: M. GABER
+            </motion.p>
+          </div>
+        )}
       </div>
 
       {!prefersReducedMotion && (
-        <div className="splash-bar" aria-hidden="true">
-          <div className="splash-bar-track">
-            <motion.div
-              className="splash-bar-fill"
-              animate={{ scaleX: progress / 100 }}
-              transition={{ duration: 0.32, ease: 'easeOut' }}
-            />
-          </div>
-        </div>
-      )}
-
-      {!prefersReducedMotion && (
-        <div className="splash-status" aria-live="polite">
-          <motion.p
-            className="splash-line"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: showLog ? [0, 0.35, 0.15, 0.7, 0.5, 1] : 0 }}
-            transition={{ duration: 0.45, times: [0, 0.15, 0.3, 0.5, 0.7, 1] }}
-          >
-            &gt; initializing board...
-          </motion.p>
-          <motion.p
-            className="splash-line active"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: showLog ? [0, 0.2, 0.1, 0.55, 0.85, 1] : 0 }}
-            transition={{ duration: 0.5, delay: 0.12, times: [0, 0.15, 0.3, 0.5, 0.75, 1] }}
-          >
-            &gt; profile loaded: M. GABER
-          </motion.p>
-        </div>
+        <p className="splash-skip-hint" aria-hidden="true">click or press any key to skip</p>
       )}
     </motion.div>
   );

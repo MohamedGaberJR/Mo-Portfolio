@@ -2,11 +2,22 @@
   position: relative;
 }
 
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
+  opacity: 0.35;
+}
+
 .about-container {
   position: relative;
 }
 
-/* Two-column grid: bio left, spec card right */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -37,6 +48,15 @@
 
 .about-bio {
   z-index: 2;
+  padding-left: 0;
+  border-left: 2px solid transparent;
+}
+
+@media (min-width: 992px) {
+  .about-bio {
+    padding-left: 1.25rem;
+    border-left-color: var(--border-subtle);
+  }
 }
 
 .bio-paragraph {
@@ -51,94 +71,30 @@
   font-weight: 600;
 }
 
-/* Technical Spec Sheet Card */
 .about-specs {
   width: 100%;
   z-index: 2;
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 992px) {
-  .about-specs {
-    margin-top: 1.25rem;
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
 }
 
 .spec-card {
   background-color: var(--bg-panel);
-  border: 1px solid var(--olive-primary);
-  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
   font-family: var(--font-mono);
   overflow: hidden;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
-  transition: border-color var(--transition-normal);
+  box-shadow: var(--panel-shadow);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .spec-card:hover {
-  border-color: var(--olive-signal);
-}
-
-.trade-card {
-  min-height: 100%;
-}
-
-.trade-card-header {
-  background-color: rgba(168, 194, 76, 0.08);
-}
-
-.trade-card-body {
-  padding: 1rem;
-}
-
-.trade-title-block {
-  margin-bottom: 0.9rem;
-}
-
-.trade-title {
-  font-size: 1rem;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-  line-height: 1.4;
-}
-
-.trade-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  letter-spacing: 0.04em;
-}
-
-.trade-bullets {
-  list-style: none;
-  display: grid;
-  gap: 0.7rem;
-  padding: 0;
-  margin: 0;
-}
-
-.trade-bullets li {
-  position: relative;
-  padding-left: 0.95rem;
-  color: var(--text-primary);
-  font-size: 0.84rem;
-  line-height: 1.6;
-}
-
-.trade-bullets li::before {
-  content: '▹';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--olive-signal);
+  border-color: var(--border-active);
+  box-shadow: var(--panel-shadow), var(--panel-glow);
 }
 
 .spec-card-header {
-  background-color: rgba(107, 122, 63, 0.08);
+  background-color: rgba(91, 107, 44, 0.08);
   padding: 0.6rem 0.9rem;
-  border-bottom: 1px solid rgba(107, 122, 63, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
@@ -163,7 +119,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0;
-  border-bottom: 1px dashed rgba(107, 122, 63, 0.12);
+  border-bottom: 1px dashed var(--border-subtle);
 }
 
 .spec-row:last-child {
@@ -217,9 +173,9 @@
 }
 
 .spec-card-footer {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.25);
   padding: 0.5rem 1rem;
-    border-top: 1px solid rgba(107, 122, 63, 0.10);
+  border-top: 1px solid var(--border-subtle);
   text-align: center;
 }
 

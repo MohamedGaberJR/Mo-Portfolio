@@ -11,6 +11,12 @@
   --copper-accent: #9a6529;    /* Rare accent for data/analytics moments (solder/copper) */
   --copper-accent-glow: rgba(154, 101, 41, 0.3);
   --olive-signal-glow: rgba(126, 148, 50, 0.28);
+  --border-subtle: rgba(91, 107, 44, 0.18);
+  --border-active: rgba(126, 148, 50, 0.45);
+  --panel-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --panel-glow: 0 0 24px var(--olive-signal-glow);
+  --glass-bg: rgba(8, 10, 7, 0.82);
+  --glass-border: rgba(91, 107, 44, 0.22);
 
   /* Typography */
   --font-display: 'Space Grotesk', sans-serif;

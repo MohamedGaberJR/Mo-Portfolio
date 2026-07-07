@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Terminal, ArrowUp } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 import './Contact.css';
 
 export default function Contact() {
@@ -9,9 +10,9 @@ export default function Contact() {
     <footer id="contact" className="contact-section">
       <div className="container contact-container">
 
-        <div className="contact-panel">
+        <ScrollReveal className="contact-panel">
           <span className="eyebrow">05 // SHUTDOWN TERMINAL</span>
-          <h2 className="section-title">Get In Touch</h2>
+          <h2 className="section-title contact-title">Get In Touch</h2>
           <p className="contact-intro">
             Whether you want to discuss a Frontend role, review my database design analysis, or speak about a potential project, feel free to ping my registry.
           </p>
@@ -47,21 +48,22 @@ export default function Contact() {
               </div>
             </a>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Terminal Sign-off and Footer */}
-        <div className="footer-terminal">
-          <div className="terminal-header">
-            <Terminal size={12} className="terminal-icon" />
-            <span>syslog.shutdown</span>
+        <ScrollReveal delay={0.1}>
+          <div className="footer-terminal terminal-panel">
+            <div className="terminal-panel-header">
+              <Terminal size={12} className="terminal-icon" />
+              <span>syslog.shutdown</span>
+            </div>
+            <div className="terminal-panel-body">
+              <div className="terminal-log-row">&gt; connection_close --recruiter-session</div>
+              <div className="terminal-log-row">&gt; saving state... OK</div>
+              <div className="terminal-log-row">&gt; system offline. thank you for visiting.</div>
+              <div className="terminal-log-row-prompt">&gt; <span className="cursor-blink">_</span></div>
+            </div>
           </div>
-          <div className="terminal-body">
-            <div className="terminal-log-row">&gt; connection_close --recruiter-session</div>
-            <div className="terminal-log-row">&gt; saving state... OK</div>
-            <div className="terminal-log-row">&gt; system offline. thank you for visiting.</div>
-            <div className="terminal-log-row-prompt">&gt; <span className="cursor-blink">_</span></div>
-          </div>
-        </div>
+        </ScrollReveal>
 
         <div className="footer-meta">
           <div className="meta-left">
@@ -75,7 +77,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Dynamic trace anchor for Contact section */}
         <div className="trace-anchor" data-id="contact" id="anchor-contact"></div>
       </div>
     </footer>

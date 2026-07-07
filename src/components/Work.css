@@ -1,6 +1,17 @@
 .work-section {
   position: relative;
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
+}
+
+.work-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
+  opacity: 0.35;
 }
 
 .featured-wrapper {
@@ -26,7 +37,8 @@
 .header-divider-line {
   flex: 1;
   height: 1px;
-  background-image: linear-gradient(90deg, rgba(107, 122, 63, 0.3), transparent);
+  background-image: linear-gradient(90deg, var(--olive-primary), transparent);
+  opacity: 0.5;
 }
 
 .projects-grid {
@@ -35,4 +47,8 @@
   gap: var(--spacing-md);
   max-width: 800px;
   margin: 0 auto;
+}
+
+.projects-grid > * {
+  height: 100%;
 }

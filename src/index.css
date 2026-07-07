@@ -20,12 +20,14 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  /* PCB Silkscreen grid pattern in background */
-  background-image: 
-    linear-gradient(rgba(107, 122, 63, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(107, 122, 63, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: center;
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(126, 148, 50, 0.06), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(91, 107, 44, 0.04), transparent 50%),
+    linear-gradient(rgba(91, 107, 44, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 107, 44, 0.025) 1px, transparent 1px);
+  background-size: auto, auto, 40px 40px, 40px 40px;
+  background-position: center, center, center, center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -119,6 +121,16 @@ section {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--olive-primary), transparent);
+  opacity: 0.6;
 }
 
 @media (min-width: 768px) {
@@ -164,7 +176,88 @@ section {
 .btn-secondary:hover {
   border-color: var(--olive-signal);
   color: var(--olive-signal);
-  box-shadow: 0 0 10px rgba(168, 194, 76, 0.2);
+  box-shadow: 0 0 10px var(--olive-signal-glow);
+}
+
+/* Shared terminal panel styling */
+.terminal-panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  box-shadow: var(--panel-shadow);
+}
+
+.terminal-panel-header {
+  background-color: rgba(91, 107, 44, 0.08);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.terminal-panel-body {
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+/* PCB corner bracket decoration */
+.pcb-corners {
+  position: relative;
+}
+
+.pcb-corners::before,
+.pcb-corners::after,
+.pcb-corners > .pcb-corner-bl,
+.pcb-corners > .pcb-corner-br {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--olive-primary);
+  border-style: solid;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: border-color var(--transition-normal), opacity var(--transition-normal);
+}
+
+.pcb-corners::before {
+  content: '';
+  top: 0;
+  left: 0;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.pcb-corners::after {
+  content: '';
+  top: 0;
+  right: 0;
+  border-width: 1.5px 1.5px 0 0;
+}
+
+.pcb-corners > .pcb-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1.5px 1.5px;
+}
+
+.pcb-corners > .pcb-corner-br {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+.pcb-corners:hover::before,
+.pcb-corners:hover::after,
+.pcb-corners:hover > .pcb-corner-bl,
+.pcb-corners:hover > .pcb-corner-br {
+  border-color: var(--olive-signal);
+  opacity: 0.9;
 }
 
 /* Reduced Motion Override */

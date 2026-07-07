@@ -1,7 +1,20 @@
 .data-section {
   position: relative;
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
-  background-color: rgba(20, 23, 16, 0.3); /* Slightly lighter base */
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(154, 101, 41, 0.05), transparent 55%),
+    rgba(8, 10, 7, 0.5);
+}
+
+.data-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--copper-accent), transparent);
+  opacity: 0.35;
 }
 
 .data-container {

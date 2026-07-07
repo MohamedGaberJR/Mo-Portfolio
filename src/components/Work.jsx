@@ -2,6 +2,7 @@ import React from 'react';
 import { projects } from '../data/projects';
 import FeaturedProject from './FeaturedProject';
 import ProjectCard from './ProjectCard';
+import ScrollReveal from './ScrollReveal';
 import './Work.css';
 
 export default function Work() {
@@ -11,23 +12,29 @@ export default function Work() {
   return (
     <section id="work" className="work-section">
       <div className="container">
-        <span className="eyebrow">02 // PORTFOLIO CHIPS</span>
-        <h2 className="section-title">Technical Projects</h2>
+        <ScrollReveal>
+          <span className="eyebrow">02 // PORTFOLIO CHIPS</span>
+          <h2 className="section-title">Technical Projects</h2>
+        </ScrollReveal>
 
-        {/* Featured Project - CarKit */}
-        <div className="featured-wrapper">
-          <FeaturedProject project={featuredProject} />
-        </div>
+        <ScrollReveal delay={0.08}>
+          <div className="featured-wrapper">
+            <FeaturedProject project={featuredProject} />
+          </div>
+        </ScrollReveal>
 
-        {/* Secondary Projects Grid */}
-        <div className="other-projects-header">
-          <span className="sub-eyebrow">ADDITIONAL BOARD REGISTERS</span>
-          <div className="header-divider-line"></div>
-        </div>
+        <ScrollReveal delay={0.1}>
+          <div className="other-projects-header">
+            <span className="sub-eyebrow">ADDITIONAL BOARD REGISTERS</span>
+            <div className="header-divider-line"></div>
+          </div>
+        </ScrollReveal>
 
         <div className="projects-grid">
-          {otherProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {otherProjects.map((project, index) => (
+            <ScrollReveal key={project.id} delay={0.08 + index * 0.06}>
+              <ProjectCard project={project} />
+            </ScrollReveal>
           ))}
         </div>
       </div>

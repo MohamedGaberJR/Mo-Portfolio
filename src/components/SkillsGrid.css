@@ -1,6 +1,17 @@
 .skills-section {
   position: relative;
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
+}
+
+.skills-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
+  opacity: 0.35;
 }
 
 .skills-container {
@@ -25,10 +36,13 @@
   }
 }
 
-/* IC Category Card */
+.skills-grid > * {
+  height: 100%;
+}
+
 .skills-category-card {
   background-color: var(--bg-panel);
-  border: 1px solid rgba(107, 122, 63, 0.25);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--border-radius-md);
   font-family: var(--font-mono);
   overflow: hidden;
@@ -36,18 +50,19 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .skills-category-card:hover {
-  border-color: var(--olive-signal);
-  box-shadow: 0 4px 20px var(--olive-signal-glow);
-  transform: translateY(-2px);
+  border-color: var(--border-active);
+  box-shadow: var(--panel-shadow), var(--panel-glow);
+  transform: translateY(-3px);
 }
 
 .category-header {
-  background-color: rgba(107, 122, 63, 0.08);
+  background-color: rgba(91, 107, 44, 0.08);
   padding: 0.75rem;
-  border-bottom: 1px solid rgba(107, 122, 63, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -95,7 +110,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.25rem 0;
-  border-bottom: 1px dashed rgba(107, 122, 63, 0.1);
+  border-bottom: 1px dashed var(--border-subtle);
 }
 
 .skill-row:last-child {
@@ -107,7 +122,6 @@
   color: var(--text-primary);
 }
 
-/* LED indicators */
 .skill-level-indicator {
   display: flex;
   gap: 4px;
@@ -117,26 +131,33 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #272c21;
-  border: 1px solid rgba(107, 122, 63, 0.3);
+  background-color: #1a1e15;
+  border: 1px solid var(--border-subtle);
   transition: all var(--transition-fast);
 }
 
 .led-dot.lit {
   background-color: var(--olive-signal);
   border-color: var(--olive-signal);
-  box-shadow: 0 0 6px var(--olive-signal);
+  box-shadow: 0 0 6px var(--olive-signal-glow);
 }
 
 .skills-category-card:hover .led-dot.lit {
   box-shadow: 0 0 10px var(--olive-signal);
+  animation: led-flicker 0.4s ease-out calc(var(--led-index, 0) * 0.06s) both;
+}
+
+@keyframes led-flicker {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  60% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .category-footer {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 0.4rem;
   text-align: center;
-  border-top: 1px solid rgba(107, 122, 63, 0.1);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .silkscreen-marking {
@@ -148,5 +169,9 @@
 @media (prefers-reduced-motion: reduce) {
   .skills-category-card {
     transform: none !important;
+  }
+
+  .skills-category-card:hover .led-dot.lit {
+    animation: none;
   }
 }

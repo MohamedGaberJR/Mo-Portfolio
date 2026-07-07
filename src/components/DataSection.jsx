@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BarChart2, Database, ShieldAlert, GitCommit } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 import './DataSection.css';
 
 export default function DataSection() {
@@ -24,8 +25,7 @@ export default function DataSection() {
         <div className="trace-anchor" data-id="data" id="anchor-data"></div>
 
         <div className="data-grid">
-          {/* Text and context description */}
-          <div className="data-info">
+          <ScrollReveal className="data-info">
             <span className="eyebrow-copper">03 // DATA CORES & ANALYTICS</span>
             <h2 className="section-title title-copper">
               Data & Analytics
@@ -51,10 +51,9 @@ export default function DataSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* Interactive Copper Dashboard Visual */}
-          <div className="data-visual">
+          <ScrollReveal className="data-visual" delay={0.12}>
             <div className="dashboard-board">
               <div className="board-header">
                 <span className="board-title">COPPER REGISTRY INTERFACE</span>
@@ -144,7 +143,7 @@ export default function DataSection() {
                 <span className="footer-silk-copper">DATA INTEGRITY BLOCK v1.2</span>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

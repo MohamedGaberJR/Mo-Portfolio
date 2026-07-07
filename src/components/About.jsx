@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollReveal from './ScrollReveal';
 import './About.css';
 
 export default function About() {
@@ -9,8 +10,7 @@ export default function About() {
         <div className="trace-anchor" data-id="about" id="anchor-about"></div>
 
         <div className="about-grid">
-          {/* Left Column: Bio text */}
-          <div className="about-bio">
+          <ScrollReveal className="about-bio">
             <span className="eyebrow">01 // PROFILE</span>
             <h2 className="section-title">About Me</h2>
             <p className="bio-paragraph">
@@ -22,11 +22,12 @@ export default function About() {
               using <strong>React</strong> and <strong>React Native</strong>. On the other, I possess a rigorous foundation in database analytics and visualization, allowing me
               to translate complex system data models into clean, interactive user journeys.
             </p>
-          </div>
+          </ScrollReveal>
 
-          {/* Right Column: Technical Spec Sheet + TradeLink Project */}
-          <div className="about-specs">
-            <div className="spec-card">
+          <ScrollReveal className="about-specs" delay={0.12}>
+            <div className="spec-card pcb-corners">
+              <span className="pcb-corner-bl" aria-hidden="true" />
+              <span className="pcb-corner-br" aria-hidden="true" />
               <div className="spec-card-header">
                 <span className="spec-model">DEVICE MODEL: MG-GRAD-2026</span>
                 <span className="spec-status">STATUS: CALIBRATED</span>
@@ -57,8 +58,7 @@ export default function About() {
                 <span className="spec-silkscreen">© 2026 GABER BOARD Rev 1.0</span>
               </div>
             </div>
-
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
