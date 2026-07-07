@@ -18,11 +18,11 @@ export default function Contact() {
           </p>
 
           <div className="contact-links-grid">
-            <a href="mailto:mohamed.gaber.bis@gmail.com" className="contact-link-card">
+            <a href="mailto:mohammadgaber06@gmail.com" className="contact-link-card">
               <Mail className="contact-icon" size={24} />
               <div className="contact-link-info">
                 <span className="contact-label">EMAIL REGISTER</span>
-                <span className="contact-value">mohamed.gaber.bis@gmail.com</span>
+                <span className="contact-value">mohammadgaber06@gmail.com</span>
               </div>
             </a>
 
