@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ChipLogo from './ChipLogo';
 import './Nav.css';
 
 export default function Nav({ activeSection }) {
@@ -89,16 +90,7 @@ export default function Nav({ activeSection }) {
               history.replaceState(null, '', '/');
             }}
           >
-            <div className="chip-package">
-              <span className="chip-pin pin-left-1"></span>
-              <span className="chip-pin pin-left-2"></span>
-              <span className="chip-pin pin-left-3"></span>
-              <span className="chip-pin pin-right-1"></span>
-              <span className="chip-pin pin-right-2"></span>
-              <span className="chip-pin pin-right-3"></span>
-              <span className="chip-led"></span>
-              <div className="chip-die">MMG</div>
-            </div>
+            <ChipLogo />
           </a>
 
           {/* Desktop inline links */}

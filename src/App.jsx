@@ -18,19 +18,14 @@ function App() {
     if (typeof window === 'undefined') return false;
     return !sessionStorage.getItem(SPLASH_KEY);
   });
-  const [showAppContent, setShowAppContent] = useState(() => {
-    if (typeof window === 'undefined') return true;
-    return Boolean(sessionStorage.getItem(SPLASH_KEY));
-  });
 
   useEffect(() => {
-    // List of section IDs to monitor
     const sections = ['hero', 'about', 'work', 'data', 'skills', 'contact'];
-    
+
     const observerOptions = {
       root: null,
-      rootMargin: '-30% 0px -40% 0px', // Lights up when section enters center of viewport
-      threshold: 0.05
+      rootMargin: '-30% 0px -40% 0px',
+      threshold: 0.05,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -59,31 +54,22 @@ function App() {
       <AnimatePresence>
         {showSplash && (
           <SplashScreen
-            onComplete={() => {
-              setShowSplash(false);
-              setShowAppContent(true);
-            }}
+            key="splash"
+            onComplete={() => setShowSplash(false)}
           />
         )}
       </AnimatePresence>
 
-      {showAppContent && (
-        <>
-          <Nav activeSection={activeSection} />
-          <div className="pcb-board-wrapper" style={{ position: 'relative', width: '100%' }}>
-            {/* Absolute SVG Circuit Trace overlay serving as visual/scroll navigation spine */}
-            <CircuitTrace activeSection={activeSection} />
-
-            {/* Main Section components */}
-            <Hero />
-            <About />
-            <Work />
-            <DataSection />
-            <SkillsGrid />
-            <Contact />
-          </div>
-        </>
-      )}
+      <Nav activeSection={activeSection} />
+      <div className="pcb-board-wrapper" style={{ position: 'relative', width: '100%' }}>
+        <CircuitTrace activeSection={activeSection} />
+        <Hero />
+        <About />
+        <Work />
+        <DataSection />
+        <SkillsGrid />
+        <Contact />
+      </div>
     </>
   );
 }

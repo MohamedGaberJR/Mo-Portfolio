@@ -47,81 +47,6 @@
   cursor: pointer;
 }
 
-.chip-package {
-  position: relative;
-  width: 54px;
-  height: 36px;
-  background-color: #050705;
-  border: 1px solid var(--olive-primary);
-  border-radius: var(--border-radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition-fast);
-}
-
-.chip-package:hover {
-  border-color: var(--olive-signal);
-  box-shadow: 0 0 15px var(--olive-signal-glow), inset 0 0 8px rgba(168, 194, 76, 0.1);
-  transform: scale(1.03);
-}
-
-.chip-die {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: 0.05em;
-  transition: color var(--transition-fast);
-}
-
-.logo-chip:hover .chip-die {
-  color: var(--olive-signal);
-  text-shadow: 0 0 8px var(--olive-signal-glow);
-}
-
-/* Blinking status LED */
-.chip-led {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: rgba(108, 125, 61, 0.4);
-  transition: all var(--transition-fast);
-}
-
-.logo-chip:hover .chip-led {
-  background-color: var(--olive-signal);
-  box-shadow: 0 0 8px var(--olive-signal);
-  animation: led-blink 0.8s infinite step-end alternate;
-}
-
-@keyframes led-blink {
-  50% { opacity: 0.3; box-shadow: none; }
-}
-
-/* Chip Pins */
-.chip-pin {
-  position: absolute;
-  background-color: var(--text-muted);
-  width: 5px;
-  height: 2px;
-  transition: background-color var(--transition-fast);
-}
-
-.logo-chip:hover .chip-pin {
-  background-color: var(--olive-signal);
-}
-
-.pin-left-1 { left: -5px; top: 7px; }
-.pin-left-2 { left: -5px; top: 17px; }
-.pin-left-3 { left: -5px; top: 27px; }
-.pin-right-1 { right: -5px; top: 7px; }
-.pin-right-2 { right: -5px; top: 17px; }
-.pin-right-3 { right: -5px; top: 27px; }
-
 /* ===== Desktop Navigation Links ===== */
 .nav-links-desktop {
   display: none;
@@ -266,26 +191,26 @@
   }
 
   /* Scale down the top header MMG logo and CV button */
-  .chip-package {
+  .navbar .chip-package {
     width: 44px;
     height: 28px;
   }
-  .chip-die {
+  .navbar .chip-die {
     font-size: 0.75rem;
   }
-  .chip-led {
+  .navbar .chip-led {
     top: 2px;
     right: 2px;
   }
-  .chip-pin {
+  .navbar .chip-pin {
     width: 4px;
   }
-  .pin-left-1 { left: -4px; top: 4px; }
-  .pin-left-2 { left: -4px; top: 11px; }
-  .pin-left-3 { left: -4px; top: 18px; }
-  .pin-right-1 { right: -4px; top: 4px; }
-  .pin-right-2 { right: -4px; top: 11px; }
-  .pin-right-3 { right: -4px; top: 18px; }
+  .navbar .pin-left-1 { left: -4px; top: 4px; }
+  .navbar .pin-left-2 { left: -4px; top: 11px; }
+  .navbar .pin-left-3 { left: -4px; top: 18px; }
+  .navbar .pin-right-1 { right: -4px; top: 4px; }
+  .navbar .pin-right-2 { right: -4px; top: 11px; }
+  .navbar .pin-right-3 { right: -4px; top: 18px; }
 
   .cv-btn {
     width: 32px;

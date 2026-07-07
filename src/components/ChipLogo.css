@@ -1,0 +1,129 @@
+.chip-logo {
+  display: inline-block;
+}
+
+.chip-package {
+  position: relative;
+  width: 54px;
+  height: 36px;
+  background-color: #050705;
+  border: 1px solid var(--olive-primary);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.chip-logo--large .chip-package {
+  width: 88px;
+  height: 58px;
+  border-width: 1.5px;
+}
+
+.chip-logo--large .chip-die {
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+}
+
+.chip-logo--large .chip-led {
+  top: 6px;
+  right: 6px;
+  width: 5px;
+  height: 5px;
+}
+
+.chip-logo--large .chip-pin {
+  width: 7px;
+  height: 2.5px;
+}
+
+.chip-logo--large .pin-left-1 { left: -7px; top: 11px; }
+.chip-logo--large .pin-left-2 { left: -7px; top: 28px; }
+.chip-logo--large .pin-left-3 { left: -7px; top: 45px; }
+.chip-logo--large .pin-right-1 { right: -7px; top: 11px; }
+.chip-logo--large .pin-right-2 { right: -7px; top: 28px; }
+.chip-logo--large .pin-right-3 { right: -7px; top: 45px; }
+
+.chip-package--active {
+  border-color: var(--olive-signal);
+  box-shadow: 0 0 18px var(--olive-signal-glow), inset 0 0 10px rgba(126, 148, 50, 0.12);
+}
+
+.chip-package--active .chip-die {
+  color: var(--olive-signal);
+  text-shadow: 0 0 10px var(--olive-signal-glow);
+}
+
+.chip-package--active .chip-led {
+  background-color: var(--olive-signal);
+  box-shadow: 0 0 8px var(--olive-signal);
+  animation: chip-led-blink 0.8s infinite step-end alternate;
+}
+
+.chip-package--active .chip-pin {
+  background-color: var(--olive-signal);
+}
+
+.chip-die {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  transition: color var(--transition-fast);
+}
+
+.chip-led {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(108, 125, 61, 0.4);
+  transition: all var(--transition-fast);
+}
+
+@keyframes chip-led-blink {
+  50% {
+    opacity: 0.3;
+    box-shadow: none;
+  }
+}
+
+.chip-pin {
+  position: absolute;
+  background-color: var(--text-muted);
+  width: 5px;
+  height: 2px;
+  transition: background-color var(--transition-fast);
+}
+
+.pin-left-1 { left: -5px; top: 7px; }
+.pin-left-2 { left: -5px; top: 17px; }
+.pin-left-3 { left: -5px; top: 27px; }
+.pin-right-1 { right: -5px; top: 7px; }
+.pin-right-2 { right: -5px; top: 17px; }
+.pin-right-3 { right: -5px; top: 27px; }
+
+.logo-chip:hover .chip-package {
+  border-color: var(--olive-signal);
+  box-shadow: 0 0 15px var(--olive-signal-glow), inset 0 0 8px rgba(168, 194, 76, 0.1);
+  transform: scale(1.03);
+}
+
+.logo-chip:hover .chip-die {
+  color: var(--olive-signal);
+  text-shadow: 0 0 8px var(--olive-signal-glow);
+}
+
+.logo-chip:hover .chip-led {
+  background-color: var(--olive-signal);
+  box-shadow: 0 0 8px var(--olive-signal);
+  animation: chip-led-blink 0.8s infinite step-end alternate;
+}
+
+.logo-chip:hover .chip-pin {
+  background-color: var(--olive-signal);
+}
