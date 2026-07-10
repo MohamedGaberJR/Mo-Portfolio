@@ -24,8 +24,10 @@ export default function SkillsGrid() {
           {skillsData.map((categoryBlock, categoryIdx) => (
             <ScrollReveal key={categoryIdx} delay={categoryIdx * 0.07}>
               <div className="skills-category-card pcb-corners">
-                <span className="pcb-corner-bl" aria-hidden="true" />
-                <span className="pcb-corner-br" aria-hidden="true" />
+                <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
+                <span className="pcb-corner pcb-corner-tr" aria-hidden="true" />
+                <span className="pcb-corner pcb-corner-bl" aria-hidden="true" />
+                <span className="pcb-corner pcb-corner-br" aria-hidden="true" />
                 <div className="category-header">
                   <Cpu size={14} className="category-icon" />
                   <span className="category-ic-id">IC-U{categoryIdx + 1}</span>

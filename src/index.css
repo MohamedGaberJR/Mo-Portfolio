@@ -1,7 +1,9 @@
 @import './styles/tokens.css';
 
 /* CSS Reset & General */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -22,14 +24,35 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-base);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(126, 148, 50, 0.06), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(91, 107, 44, 0.04), transparent 50%),
-    linear-gradient(rgba(91, 107, 44, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(91, 107, 44, 0.025) 1px, transparent 1px);
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(140, 166, 58, 0.05), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(91, 107, 44, 0.03), transparent 50%),
+    linear-gradient(rgba(91, 107, 44, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 107, 44, 0.02) 1px, transparent 1px);
   background-size: auto, auto, 40px 40px, 40px 40px;
   background-position: center, center, center, center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle vignette overlay for depth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ambient floating grain texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
 }
 
 @media (max-width: 767px) {
@@ -42,14 +65,17 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-base);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--olive-primary);
   border: 2px solid var(--bg-base);
   border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--olive-signal);
 }
@@ -61,10 +87,16 @@ body {
 }
 
 /* Typography styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: var(--text-highlight);
 }
 
 p {
@@ -127,10 +159,21 @@ section {
 .section-title::after {
   content: '';
   flex: 1;
-  max-width: 120px;
+  max-width: 160px;
   height: 1px;
-  background: linear-gradient(90deg, var(--olive-primary), transparent);
-  opacity: 0.6;
+  background: linear-gradient(90deg, var(--olive-signal), var(--olive-primary), transparent);
+  opacity: 0.5;
+  animation: shimmer-line 3s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer-line {
+  0% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
 }
 
 @media (min-width: 768px) {
@@ -157,14 +200,32 @@ section {
   overflow: hidden;
 }
 
+/* Animated shine on buttons */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
 .btn-primary {
   background-color: var(--olive-signal);
   color: var(--bg-base);
 }
 
 .btn-primary:hover {
-  background-color: var(--text-primary);
-  box-shadow: 0 0 15px var(--olive-signal-glow);
+  background-color: var(--olive-bright);
+  box-shadow: 0 0 20px var(--olive-signal-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -176,7 +237,8 @@ section {
 .btn-secondary:hover {
   border-color: var(--olive-signal);
   color: var(--olive-signal);
-  box-shadow: 0 0 10px var(--olive-signal-glow);
+  box-shadow: 0 0 15px var(--olive-signal-glow), inset 0 0 20px rgba(140, 166, 58, 0.04);
+  transform: translateY(-1px);
 }
 
 /* Shared terminal panel styling */
@@ -212,10 +274,7 @@ section {
   position: relative;
 }
 
-.pcb-corners::before,
-.pcb-corners::after,
-.pcb-corners > .pcb-corner-bl,
-.pcb-corners > .pcb-corner-br {
+.pcb-corner {
   position: absolute;
   width: 14px;
   height: 14px;
@@ -224,38 +283,38 @@ section {
   pointer-events: none;
   opacity: 0.55;
   transition: border-color var(--transition-normal), opacity var(--transition-normal);
+  z-index: 5;
 }
 
-.pcb-corners::before {
-  content: '';
+.pcb-corner-tl {
   top: 0;
   left: 0;
   border-width: 1.5px 0 0 1.5px;
+  border-top-left-radius: var(--border-radius-md);
 }
 
-.pcb-corners::after {
-  content: '';
+.pcb-corner-tr {
   top: 0;
   right: 0;
   border-width: 1.5px 1.5px 0 0;
+  border-top-right-radius: var(--border-radius-md);
 }
 
-.pcb-corners > .pcb-corner-bl {
+.pcb-corner-bl {
   bottom: 0;
   left: 0;
   border-width: 0 0 1.5px 1.5px;
+  border-bottom-left-radius: var(--border-radius-md);
 }
 
-.pcb-corners > .pcb-corner-br {
+.pcb-corner-br {
   bottom: 0;
   right: 0;
   border-width: 0 1.5px 1.5px 0;
+  border-bottom-right-radius: var(--border-radius-md);
 }
 
-.pcb-corners:hover::before,
-.pcb-corners:hover::after,
-.pcb-corners:hover > .pcb-corner-bl,
-.pcb-corners:hover > .pcb-corner-br {
+.pcb-corners:hover .pcb-corner {
   border-color: var(--olive-signal);
   opacity: 0.9;
 }
@@ -265,8 +324,10 @@ section {
   html {
     scroll-behavior: auto !important;
   }
-  
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-delay: -1ms !important;
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;

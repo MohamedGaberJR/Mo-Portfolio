@@ -147,15 +147,7 @@ export default function CircuitTrace({ activeSection }) {
                 className="node-core"
               />
 
-              {/* Pulsing signal glow on active */}
-              {isActive && (
-                <circle
-                  cx={pt.x}
-                  cy={pt.y}
-                  r={idx === 2 ? 20 : 15}
-                  className="node-pulse"
-                />
-              )}
+
             </g>
           );
         })}

@@ -58,10 +58,7 @@
   box-shadow: var(--panel-shadow), var(--panel-glow);
 }
 
-.splash-boot-panel::before,
-.splash-boot-panel::after,
-.splash-boot-panel > .pcb-corner-bl,
-.splash-boot-panel > .pcb-corner-br {
+.splash-boot-panel .pcb-corner {
   width: 18px;
   height: 18px;
 }

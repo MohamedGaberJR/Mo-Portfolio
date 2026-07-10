@@ -93,8 +93,10 @@ export default function SplashScreen({ onComplete }) {
       <div className="splash-scanlines" aria-hidden="true" />
 
       <div className="splash-boot-panel pcb-corners">
-        <span className="pcb-corner-bl" aria-hidden="true" />
-        <span className="pcb-corner-br" aria-hidden="true" />
+        <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
+        <span className="pcb-corner pcb-corner-tr" aria-hidden="true" />
+        <span className="pcb-corner pcb-corner-bl" aria-hidden="true" />
+        <span className="pcb-corner pcb-corner-br" aria-hidden="true" />
 
         <div className="splash-panel-header">
           <span className="splash-panel-id">GABER-BOARD // BOOT</span>

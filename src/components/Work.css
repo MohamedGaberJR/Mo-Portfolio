@@ -10,8 +10,8 @@
   transform: translateX(-50%);
   width: min(90%, 600px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
-  opacity: 0.35;
+  background: var(--gradient-section-divider);
+  opacity: 0.4;
 }
 
 .featured-wrapper {
@@ -37,8 +37,8 @@
 .header-divider-line {
   flex: 1;
   height: 1px;
-  background-image: linear-gradient(90deg, var(--olive-primary), transparent);
-  opacity: 0.5;
+  background-image: linear-gradient(90deg, var(--olive-signal), var(--olive-primary), transparent);
+  opacity: 0.4;
 }
 
 .projects-grid {

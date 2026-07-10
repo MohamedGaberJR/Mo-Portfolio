@@ -10,8 +10,8 @@
   transform: translateX(-50%);
   width: min(90%, 600px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
-  opacity: 0.35;
+  background: var(--gradient-section-divider);
+  opacity: 0.4;
 }
 
 .skills-container {
@@ -51,30 +51,67 @@
   flex-direction: column;
   height: 100%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Subtle background gradient on card */
+.skills-category-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(140, 166, 58, 0.03), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
 }
 
 .skills-category-card:hover {
   border-color: var(--border-active);
   box-shadow: var(--panel-shadow), var(--panel-glow);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+}
+
+.skills-category-card:hover::after {
+  opacity: 1;
 }
 
 .category-header {
-  background-color: rgba(91, 107, 44, 0.08);
+  background: linear-gradient(135deg, rgba(91, 107, 44, 0.1), rgba(91, 107, 44, 0.04));
   padding: 0.75rem;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  border-top-left-radius: calc(var(--border-radius-md) - 1px);
+  border-top-right-radius: calc(var(--border-radius-md) - 1px);
+}
+
+/* Gradient accent bar on header */
+.category-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--olive-signal), var(--olive-bright), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.skills-category-card:hover .category-header::before {
+  opacity: 1;
 }
 
 .category-icon {
   color: var(--olive-primary);
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), filter var(--transition-fast);
 }
 
 .skills-category-card:hover .category-icon {
   color: var(--olive-signal);
+  filter: drop-shadow(0 0 4px var(--olive-signal-glow));
 }
 
 .category-ic-id {
@@ -84,6 +121,12 @@
   border: 1px solid var(--olive-primary);
   padding: 1px 4px;
   border-radius: 2px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.skills-category-card:hover .category-ic-id {
+  border-color: var(--olive-signal);
+  box-shadow: 0 0 6px var(--olive-signal-glow);
 }
 
 .category-name {
@@ -109,8 +152,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.25rem 0;
+  padding: 0.3rem 0.25rem;
   border-bottom: 1px dashed var(--border-subtle);
+  border-radius: 2px;
+  transition: background-color var(--transition-fast);
+}
+
+.skill-row:hover {
+  background-color: rgba(140, 166, 58, 0.02);
 }
 
 .skill-row:last-child {
@@ -124,12 +173,12 @@
 
 .skill-level-indicator {
   display: flex;
-  gap: 4px;
+  gap: 5px;
 }
 
 .led-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: #1a1e15;
   border: 1px solid var(--border-subtle);
@@ -139,11 +188,11 @@
 .led-dot.lit {
   background-color: var(--olive-signal);
   border-color: var(--olive-signal);
-  box-shadow: 0 0 6px var(--olive-signal-glow);
+  box-shadow: 0 0 8px var(--olive-signal-glow);
 }
 
 .skills-category-card:hover .led-dot.lit {
-  box-shadow: 0 0 10px var(--olive-signal);
+  box-shadow: 0 0 12px var(--olive-signal);
   animation: led-flicker 0.4s ease-out calc(var(--led-index, 0) * 0.06s) both;
 }
 
@@ -155,7 +204,7 @@
 
   60% {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.2);
   }
 
   100% {
@@ -165,10 +214,12 @@
 }
 
 .category-footer {
-  background-color: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.12));
   padding: 0.4rem;
   text-align: center;
   border-top: 1px solid var(--border-subtle);
+  border-bottom-left-radius: calc(var(--border-radius-md) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius-md) - 1px);
 }
 
 .silkscreen-marking {

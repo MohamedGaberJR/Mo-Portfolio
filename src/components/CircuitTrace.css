@@ -87,36 +87,3 @@
   fill: var(--copper-accent);
   stroke: var(--copper-accent);
 }
-
-/* Pulsing halo around active nodes */
-.node-pulse {
-  fill: none;
-  stroke: var(--olive-signal);
-  stroke-opacity: 0.8;
-  stroke-width: 1px;
-  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-  transform-origin: center;
-}
-
-.node-group.copper .node-pulse {
-  stroke: var(--copper-accent);
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  80%, 100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-}
-
-/* Disable pulse if user prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .node-pulse {
-    animation: none;
-    display: none;
-  }
-}

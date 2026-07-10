@@ -10,8 +10,8 @@
   transform: translateX(-50%);
   width: min(90%, 600px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--olive-primary), transparent);
-  opacity: 0.35;
+  background: var(--gradient-section-divider);
+  opacity: 0.4;
 }
 
 .about-container {
@@ -55,7 +55,8 @@
 @media (min-width: 992px) {
   .about-bio {
     padding-left: 1.25rem;
-    border-left-color: var(--border-subtle);
+    border-left: 2px solid transparent;
+    border-image: linear-gradient(180deg, var(--olive-signal), var(--olive-primary), transparent) 1;
   }
 }
 
@@ -84,6 +85,23 @@
   overflow: hidden;
   box-shadow: var(--panel-shadow);
   transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+}
+
+/* Scanline overlay for electronic feel */
+.spec-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(140, 166, 58, 0.012) 2px,
+    rgba(140, 166, 58, 0.012) 3px
+  );
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .spec-card:hover {
@@ -92,13 +110,15 @@
 }
 
 .spec-card-header {
-  background-color: rgba(91, 107, 44, 0.08);
+  background: linear-gradient(135deg, rgba(91, 107, 44, 0.1), rgba(91, 107, 44, 0.04));
   padding: 0.6rem 0.9rem;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
   color: var(--text-muted);
+  border-top-left-radius: calc(var(--border-radius-md) - 1px);
+  border-top-right-radius: calc(var(--border-radius-md) - 1px);
 }
 
 .spec-status {
@@ -107,8 +127,8 @@
 }
 
 @keyframes glow-pulse {
-  0% { opacity: 0.6; }
-  100% { opacity: 1; }
+  0% { opacity: 0.6; text-shadow: none; }
+  100% { opacity: 1; text-shadow: 0 0 8px var(--olive-signal-glow); }
 }
 
 .spec-card-body {
@@ -120,6 +140,11 @@
   flex-direction: column;
   padding: 0.5rem 0;
   border-bottom: 1px dashed var(--border-subtle);
+  transition: background-color var(--transition-fast);
+}
+
+.spec-row:hover {
+  background-color: rgba(140, 166, 58, 0.02);
 }
 
 .spec-row:last-child {
@@ -170,13 +195,16 @@
 .highlight-gpa {
   color: var(--olive-signal);
   font-weight: 600;
+  text-shadow: 0 0 10px var(--olive-signal-glow);
 }
 
 .spec-card-footer {
-  background-color: rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.15));
   padding: 0.5rem 1rem;
   border-top: 1px solid var(--border-subtle);
   text-align: center;
+  border-bottom-left-radius: calc(var(--border-radius-md) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius-md) - 1px);
 }
 
 .spec-silkscreen {

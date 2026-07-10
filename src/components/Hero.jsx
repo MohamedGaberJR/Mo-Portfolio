@@ -115,17 +115,18 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       {bootFinished && (
-        <motion.div
+        <motion.a
+          href="#about"
           className="scroll-indicator"
+          aria-label="Scroll down"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5 }}
-          transition={{ delay: 1 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ opacity: { delay: 1, duration: 0.3 } }}
         >
-          <a href="#about" aria-label="Scroll down">
-            <span className="scroll-text">SYSTEM LOGIC BELOW</span>
-            <ArrowDown size={14} className="scroll-arrow" />
-          </a>
-        </motion.div>
+          <span className="scroll-text">SYSTEM LOGIC BELOW</span>
+          <ArrowDown size={14} className="scroll-arrow" />
+        </motion.a>
       )}
     </header>
   );

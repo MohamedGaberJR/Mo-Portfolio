@@ -1,7 +1,8 @@
 .data-section {
   position: relative;
   background:
-    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(154, 101, 41, 0.05), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(184, 118, 46, 0.04), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184, 118, 46, 0.02), transparent 50%),
     rgba(8, 10, 7, 0.5);
 }
 
@@ -13,8 +14,8 @@
   transform: translateX(-50%);
   width: min(90%, 600px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--copper-accent), transparent);
-  opacity: 0.35;
+  background: linear-gradient(90deg, transparent, var(--copper-accent), var(--copper-bright), var(--copper-accent), transparent);
+  opacity: 0.4;
 }
 
 .data-container {
@@ -50,7 +51,7 @@
 }
 
 .title-copper {
-  color: var(--text-primary);
+  color: var(--text-highlight);
 }
 
 .data-desc {
@@ -68,18 +69,26 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  padding: 0.75rem;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.data-highlight-item:hover {
+  background-color: rgba(184, 118, 46, 0.03);
 }
 
 .highlight-icon-copper {
   color: var(--copper-accent);
   margin-top: 0.25rem;
   flex-shrink: 0;
+  filter: drop-shadow(0 0 4px var(--copper-accent-glow));
 }
 
 .data-highlight-item h4 {
   font-family: var(--font-display);
   font-size: 1.05rem;
-  color: var(--text-primary);
+  color: var(--text-highlight);
   margin-bottom: 0.25rem;
 }
 
@@ -100,26 +109,46 @@
   width: 100%;
   max-width: 380px;
   background-color: var(--bg-panel);
-  border: 1px solid var(--copper-accent);
+  border: 1px solid rgba(184, 118, 46, 0.35);
   border-radius: var(--border-radius-md);
   font-family: var(--font-mono);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(201, 143, 74, 0.05);
+  box-shadow: 0 10px 40px rgba(184, 118, 46, 0.06);
   transition: all var(--transition-normal);
 }
 
 .dashboard-board:hover {
-  box-shadow: 0 10px 40px var(--copper-accent-glow);
+  box-shadow: 0 15px 50px var(--copper-accent-glow), 0 0 30px rgba(184, 118, 46, 0.08);
+  border-color: rgba(184, 118, 46, 0.5);
 }
 
 .board-header {
-  background-color: rgba(201, 143, 74, 0.08);
+  background: linear-gradient(135deg, rgba(184, 118, 46, 0.12), rgba(212, 147, 66, 0.06));
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(201, 143, 74, 0.2);
+  border-bottom: 1px solid rgba(184, 118, 46, 0.2);
   display: flex;
   justify-content: space-between;
   font-size: 0.65rem;
   color: var(--copper-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Metallic shimmer on header */
+.board-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 147, 66, 0.1), transparent);
+  animation: copper-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes copper-shimmer {
+  0%, 100% { left: -100%; }
+  50% { left: 150%; }
 }
 
 .dashboard-body {
@@ -133,9 +162,15 @@
 .chart-container {
   position: relative;
   background-color: #0d0f0c;
-  border: 1px solid rgba(201, 143, 74, 0.15);
+  border: 1px solid rgba(184, 118, 46, 0.2);
   border-radius: var(--border-radius-sm);
   padding: 0.5rem;
+  transition: border-color var(--transition-normal);
+}
+
+.dashboard-board:hover .chart-container {
+  border-color: rgba(184, 118, 46, 0.35);
+  box-shadow: inset 0 0 20px rgba(184, 118, 46, 0.03);
 }
 
 .analytics-svg {
@@ -154,6 +189,7 @@
 .chart-dot-group:hover .chart-dot {
   fill: var(--copper-accent);
   r: 7px;
+  filter: drop-shadow(0 0 4px var(--copper-accent-glow));
 }
 
 .chart-tooltip {
@@ -170,6 +206,7 @@
   transform: translateY(5px);
   transition: opacity var(--transition-normal), transform var(--transition-normal);
   min-height: 48px;
+  backdrop-filter: blur(8px);
 }
 
 .chart-tooltip.visible {
@@ -197,12 +234,18 @@
 }
 
 .stat-pill-copper {
-  background-color: rgba(201, 143, 74, 0.05);
-  border: 1px dashed rgba(201, 143, 74, 0.25);
+  background: linear-gradient(135deg, rgba(184, 118, 46, 0.06), rgba(184, 118, 46, 0.02));
+  border: 1px dashed rgba(184, 118, 46, 0.25);
   border-radius: var(--border-radius-sm);
   padding: 0.5rem 0.75rem;
   display: flex;
   flex-direction: column;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.stat-pill-copper:hover {
+  border-color: rgba(184, 118, 46, 0.4);
+  box-shadow: 0 0 12px rgba(184, 118, 46, 0.08);
 }
 
 .stat-lbl-copper {
@@ -215,12 +258,13 @@
   font-size: 1rem;
   font-weight: 700;
   color: var(--copper-accent);
+  text-shadow: 0 0 8px var(--copper-accent-glow);
 }
 
 .board-footer {
-  background-color: rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
   padding: 0.5rem 1rem;
-  border-top: 1px solid rgba(201, 143, 74, 0.1);
+  border-top: 1px solid rgba(184, 118, 46, 0.1);
   text-align: center;
 }
 
@@ -228,4 +272,10 @@
   font-size: 0.6rem;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-header::after {
+    animation: none;
+  }
 }

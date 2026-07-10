@@ -12,11 +12,28 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
 }
 
+/* Gradient top-border accent on hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--olive-signal), var(--olive-bright), var(--olive-signal), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 3;
+}
+
+/* Background gradient shift on hover */
 .project-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(126, 148, 50, 0.06), transparent 60%);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(140, 166, 58, 0.06), transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(140, 166, 58, 0.03), transparent 50%);
   opacity: 0;
   transition: opacity var(--transition-normal);
   pointer-events: none;
@@ -24,8 +41,12 @@
 
 .project-card:hover {
   border-color: var(--border-active);
-  box-shadow: var(--panel-shadow), var(--panel-glow);
-  transform: translateY(-3px);
+  box-shadow: var(--panel-shadow-lg), var(--panel-glow);
+  transform: translateY(-5px);
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card:hover::after {
@@ -39,17 +60,41 @@
   height: 8px;
   border: 1px solid rgba(107, 122, 63, 0.4);
   pointer-events: none;
-  transition: border-color var(--transition-normal);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  z-index: 2;
 }
 
 .project-card:hover .card-corner {
   border-color: var(--olive-signal);
 }
 
-.corner-tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
-.corner-tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
-.corner-bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
-.corner-br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.corner-tl {
+  top: 6px;
+  left: 6px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-tr {
+  top: 6px;
+  right: 6px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-bl {
+  bottom: 6px;
+  left: 6px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner-br {
+  bottom: 6px;
+  right: 6px;
+  border-left: none;
+  border-top: none;
+}
 
 /* Travelling Laser Pulse along Card Border */
 .card-pulse-line {
@@ -58,10 +103,11 @@
   left: -100%;
   width: 50%;
   height: 1.5px;
-  background: linear-gradient(90deg, transparent, var(--olive-signal), transparent);
+  background: linear-gradient(90deg, transparent, var(--olive-signal), var(--olive-bright), transparent);
   transition: left 0s;
   pointer-events: none;
   opacity: 0;
+  z-index: 3;
 }
 
 .project-card:hover .card-pulse-line {
@@ -82,11 +128,12 @@
 
 .card-header-icon {
   color: var(--olive-primary);
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), filter var(--transition-fast);
 }
 
 .project-card:hover .card-header-icon {
   color: var(--olive-signal);
+  filter: drop-shadow(0 0 4px var(--olive-signal-glow));
 }
 
 .card-id {
@@ -105,7 +152,7 @@
 
 .card-title {
   font-size: 1.35rem;
-  color: var(--text-primary);
+  color: var(--text-highlight);
   margin-bottom: 0.15rem;
 }
 
@@ -121,7 +168,7 @@
   font-size: 0.75rem;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  background-color: rgba(107, 122, 63, 0.08);
+  background: linear-gradient(135deg, rgba(107, 122, 63, 0.1), rgba(107, 122, 63, 0.04));
   padding: 0.25rem 0.5rem;
   border-radius: var(--border-radius-sm);
   display: inline-block;
@@ -156,17 +203,18 @@
 }
 
 .card-bullet-dot {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   background-color: var(--olive-primary);
   border-radius: 50%;
   margin-top: 0.5rem;
   flex-shrink: 0;
-  transition: background-color var(--transition-fast);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .project-card:hover .card-bullet-dot {
   background-color: var(--olive-signal);
+  box-shadow: 0 0 6px var(--olive-signal-glow);
 }
 
 /* Card Footer & Tags */
@@ -194,7 +242,7 @@
 }
 
 .project-card:hover .card-tag {
-  border-color: rgba(168, 194, 76, 0.4);
+  border-color: rgba(140, 166, 58, 0.4);
   color: var(--text-primary);
 }
 
@@ -204,6 +252,7 @@
     animation: none;
     opacity: 0;
   }
+
   .project-card {
     transform: none !important;
   }

@@ -2,21 +2,35 @@
 
 :root {
   /* Color Palette */
-  --bg-base: #030403;          /* Page background — deeper pitch black with olive undertone */
-  --bg-panel: #080a07;         /* Card / panel surface, darker and more premium */
+  --bg-base: #020302;          /* Page background — deepest pitch black with olive undertone */
+  --bg-panel: #070907;         /* Card / panel surface — darker and more premium */
+  --bg-elevated: #0c0e0a;     /* Elevated panels — subtle lift from base */
   --olive-primary: #5b6b2c;    /* Primary brand olive — slightly muted for a darker feel */
-  --olive-signal: #7e9432;     /* Active olive-lime — still vibrant but deeper */
+  --olive-signal: #8ca63a;     /* Active olive-lime — slightly brighter for contrast */
+  --olive-bright: #a8c24c;     /* Emphasis olive — used for gradients and glows */
   --text-primary: #eae7da;     /* Main body text — warm off-white */
+  --text-highlight: #f5f2e8;   /* Emphasis text — warmer white for key headings */
   --text-muted: #81886f;       /* Secondary text — slightly deeper for balance */
-  --copper-accent: #9a6529;    /* Rare accent for data/analytics moments (solder/copper) */
-  --copper-accent-glow: rgba(154, 101, 41, 0.3);
-  --olive-signal-glow: rgba(126, 148, 50, 0.28);
+  --copper-accent: #b8762e;    /* Rare accent — warmer copper for data/analytics moments */
+  --copper-bright: #d49342;    /* Bright copper — for gradients */
+  --copper-accent-glow: rgba(184, 118, 46, 0.3);
+  --olive-signal-glow: rgba(140, 166, 58, 0.28);
+  --olive-bright-glow: rgba(168, 194, 76, 0.18);
   --border-subtle: rgba(91, 107, 44, 0.18);
-  --border-active: rgba(126, 148, 50, 0.45);
-  --panel-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --border-active: rgba(140, 166, 58, 0.5);
+  --panel-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --panel-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.65);
   --panel-glow: 0 0 24px var(--olive-signal-glow);
-  --glass-bg: rgba(8, 10, 7, 0.82);
+  --panel-glow-strong: 0 0 40px var(--olive-signal-glow), 0 0 80px var(--olive-bright-glow);
+  --glass-bg: rgba(6, 8, 5, 0.88);
   --glass-border: rgba(91, 107, 44, 0.22);
+
+  /* Premium Gradients */
+  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, var(--copper-accent) 100%);
+  --gradient-olive: linear-gradient(135deg, rgba(91, 107, 44, 0.15), rgba(140, 166, 58, 0.08));
+  --gradient-copper: linear-gradient(135deg, rgba(184, 118, 46, 0.12), rgba(212, 147, 66, 0.06));
+  --gradient-card-hover: radial-gradient(ellipse at 50% 0%, rgba(140, 166, 58, 0.08), transparent 60%);
+  --gradient-section-divider: linear-gradient(90deg, transparent, var(--olive-primary), var(--olive-signal), var(--olive-primary), transparent);
 
   /* Typography */
   --font-display: 'Space Grotesk', sans-serif;

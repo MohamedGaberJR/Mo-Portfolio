@@ -26,8 +26,10 @@ export default function About() {
 
           <ScrollReveal className="about-specs" delay={0.12}>
             <div className="spec-card pcb-corners">
-              <span className="pcb-corner-bl" aria-hidden="true" />
-              <span className="pcb-corner-br" aria-hidden="true" />
+              <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
+              <span className="pcb-corner pcb-corner-tr" aria-hidden="true" />
+              <span className="pcb-corner pcb-corner-bl" aria-hidden="true" />
+              <span className="pcb-corner pcb-corner-br" aria-hidden="true" />
               <div className="spec-card-header">
                 <span className="spec-model">DEVICE MODEL: MG-GRAD-2026</span>
                 <span className="spec-status">STATUS: CALIBRATED</span>
