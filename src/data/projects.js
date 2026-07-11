@@ -44,5 +44,19 @@ export const projects = [
       'Led the system analysis process with use cases, user stories, activity diagrams, sequence diagrams, class diagrams, and data flow diagrams.',
       'Built the database layer to support secure material exchange workflows and consistent supply-chain reporting.'
     ]
+  },
+  {
+    id: 'design',
+    title: 'UI/UX Design',
+    subtitle: 'Figma & Canva Creative Prototyping',
+    description: 'Designed high-fidelity user interfaces, mockups, and interactive wireframes using Figma and Canva, focusing on user-centered design, cohesive design systems, and visual communication.',
+    role: 'UI/UX Designer',
+    featured: false,
+    tech: ['Figma', 'Canva', 'UI/UX Design', 'Prototyping', 'Wireframing'],
+    bullets: [
+      'Created interactive high-fidelity user prototypes in Figma to map out seamless user flows and screen routing layouts.',
+      'Designed polished brand visual identity assets, mockups, and presentation decks using Canva.',
+      'Established cohesive UI style guidelines, including color schemes, custom iconography sets, and typography hierarchies.'
+    ]
   }
 ];

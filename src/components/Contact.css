@@ -36,6 +36,10 @@
   z-index: 2;
 }
 
+.contact-title {
+  justify-content: center;
+}
+
 .contact-title::after {
   display: none;
 }

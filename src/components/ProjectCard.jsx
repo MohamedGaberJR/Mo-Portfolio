@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3, Database, ShieldCheck, ChevronRight, FileText } from 'lucide-react';
+import { BarChart3, Database, ShieldCheck, ChevronRight, FileText, Palette } from 'lucide-react';
 import './ProjectCard.css';
 
 export default function ProjectCard({ project }) {
@@ -12,6 +12,9 @@ export default function ProjectCard({ project }) {
     }
     if (project.id === 'tradelink') {
       return <Database size={20} className="card-header-icon" />;
+    }
+    if (project.id === 'design') {
+      return <Palette size={20} className="card-header-icon" />;
     }
     return <FileText size={20} className="card-header-icon" />;
   };
