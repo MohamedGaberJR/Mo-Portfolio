@@ -217,33 +217,3 @@
     transform: none !important;
   }
 }
-
-@media (max-width: 767px) {
-  .contact-panel {
-    text-align: left;
-  }
-
-  .contact-intro {
-    padding-left: 44px;
-    margin-left: 0;
-    max-width: none;
-  }
-
-  .contact-links-grid {
-    margin-left: 44px;
-    width: calc(100% - 44px);
-  }
-
-  .footer-terminal {
-    margin-left: 44px;
-    width: calc(100% - 44px);
-    max-width: none;
-  }
-
-  .footer-meta {
-    margin-left: 44px;
-    width: calc(100% - 44px);
-    text-align: left;
-    align-items: flex-start;
-  }
-}

@@ -297,3 +297,9 @@
     transition: none;
   }
 }
+
+@media (max-width: 767px) {
+  .mob-tab.active .mob-tab-icon {
+    filter: drop-shadow(0 0 6px var(--olive-signal-glow)) drop-shadow(0 0 12px var(--olive-signal));
+  }
+}

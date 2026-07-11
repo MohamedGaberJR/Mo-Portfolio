@@ -218,14 +218,3 @@
     animation: none;
   }
 }
-
-@media (max-width: 767px) {
-  .bio-paragraph {
-    padding-left: 44px;
-  }
-
-  .spec-card {
-    margin-left: 44px;
-    width: calc(100% - 44px) !important;
-  }
-}

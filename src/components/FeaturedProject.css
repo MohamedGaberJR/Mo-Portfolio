@@ -583,10 +583,6 @@
 }
 
 @media (max-width: 767px) {
-  .featured-info {
-    padding-left: 44px;
-  }
-
   .project-title {
     font-size: 1.85rem;
   }
