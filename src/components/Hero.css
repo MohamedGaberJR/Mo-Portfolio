@@ -421,10 +421,6 @@
   .hero-actions {
     justify-content: center;
   }
-
-  .scroll-indicator {
-    display: none;
-  }
 }
 
 /* Scroll indicator — sleek capsule design */
@@ -481,6 +477,12 @@
 
   60% {
     transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none !important;
   }
 }
 
