@@ -421,6 +421,10 @@
   .hero-actions {
     justify-content: center;
   }
+
+  .scroll-indicator {
+    display: none;
+  }
 }
 
 /* Scroll indicator — sleek capsule design */
