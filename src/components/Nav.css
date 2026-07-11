@@ -190,8 +190,8 @@
     box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.35);
     justify-content: space-around;
     align-items: stretch;
-    height: 60px;
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   /* Scale down the top header MMG logo and CV button */
