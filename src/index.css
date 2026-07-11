@@ -59,6 +59,20 @@ body::after {
   body {
     padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
   }
+
+  .section-title {
+    font-size: 1.75rem;
+    padding-left: 44px;
+    gap: 0.5rem;
+  }
+
+  .section-title::after {
+    display: none !important;
+  }
+
+  .eyebrow {
+    padding-left: 44px;
+  }
 }
 
 /* Scrollbar Customization */

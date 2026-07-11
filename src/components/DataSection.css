@@ -279,3 +279,18 @@
     animation: none;
   }
 }
+
+@media (max-width: 767px) {
+  .data-desc {
+    padding-left: 44px;
+  }
+
+  .data-highlights {
+    margin-left: 44px;
+  }
+
+  .dashboard-board {
+    margin-left: 44px;
+    width: calc(100% - 44px) !important;
+  }
+}

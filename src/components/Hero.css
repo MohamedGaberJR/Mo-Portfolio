@@ -370,36 +370,36 @@
 @media (max-width: 768px) {
   .trace-anchor {
     top: 50%;
-    left: 50%;
+    left: 28px;
   }
 
   #anchor-hero {
-    left: 50%;
-    top: 180px;
+    left: 28px;
+    top: 120px;
   }
 
   #anchor-about {
-    left: 30%;
+    left: 28px;
     top: 0;
   }
 
   #anchor-work {
-    left: 70%;
+    left: 28px;
     top: 0;
   }
 
   #anchor-data {
-    left: 25%;
+    left: 28px;
     top: 0;
   }
 
   #anchor-skills {
-    left: 75%;
+    left: 28px;
     top: 0;
   }
 
   #anchor-contact {
-    left: 50%;
+    left: 28px;
     top: 0;
   }
 
@@ -408,18 +408,35 @@
   }
 
   .hero-main {
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 44px;
   }
 
   .hero-eyebrow-container {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .hero-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .terminal-boot {
+    margin-left: 44px;
+    width: calc(100% - 44px);
+    max-width: none;
+  }
+
+  .hero-profile {
     justify-content: center;
+    margin-bottom: var(--spacing-sm);
   }
 }
 

@@ -237,3 +237,10 @@
     animation: none;
   }
 }
+
+@media (max-width: 767px) {
+  .skills-grid {
+    margin-left: 44px;
+    width: calc(100% - 44px);
+  }
+}
