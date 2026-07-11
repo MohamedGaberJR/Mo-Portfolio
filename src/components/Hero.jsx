@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, Cpu, ArrowDown } from 'lucide-react';
 import './Hero.css';
@@ -7,6 +7,30 @@ export default function Hero() {
   const [bootLog, setBootLog] = useState([]);
   const [bootFinished, setBootFinished] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const avatarRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (prefersReducedMotion) return;
+    const el = avatarRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const normX = x / (rect.width / 2);
+    const normY = y / (rect.height / 2);
+    const tiltX = -normY * 15;
+    const tiltY = normX * 15;
+    
+    el.style.setProperty('--tilt-x', `${tiltX}deg`);
+    el.style.setProperty('--tilt-y', `${tiltY}deg`);
+  };
+
+  const handleMouseLeave = () => {
+    const el = avatarRef.current;
+    if (!el) return;
+    el.style.setProperty('--tilt-x', `0deg`);
+    el.style.setProperty('--tilt-y', `0deg`);
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -94,11 +118,15 @@ export default function Hero() {
 
             {/* Right: Large circular profile image */}
             <div className="hero-profile">
-              <div className="hero-avatar-wrapper">
+              <div 
+                className="hero-avatar-wrapper"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+              >
                 {/* Decorative orbit ring */}
                 <div className="avatar-orbit-ring"></div>
                 {/* Main bezel */}
-                <div className="hero-avatar-bezel">
+                <div className="hero-avatar-bezel" ref={avatarRef}>
                   <img src="/assets/profile.jpeg" alt="Mohamed Mohamed Gaber" className="hero-avatar-img" />
                   <div className="hero-avatar-hud"></div>
                 </div>

@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import ChipLogo from './ChipLogo';
 import './SplashScreen.css';
-
-const SPLASH_KEY = 'portfolio-splash-seen';
 
 const CENTER = 160;
 const nodes = [
@@ -23,12 +21,110 @@ export default function SplashScreen({ onComplete }) {
   const [activeNodes, setActiveNodes] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
+  const [logs, setLogs] = useState([]);
   const prefersReducedMotion = useReducedMotion();
+  const canvasRef = useRef(null);
+  const logContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    const fontSize = 11;
+    const columns = Math.floor(width / 22);
+    const drops = Array(columns).fill(0).map(() => Math.random() * -100);
+
+    const chars = [
+      '0', '1', 'X', 'Y', 'A', 'F', 'FF', '00', '1A', 'C4', 
+      'E8', 'D2', '7F', '3C', '0x', 'INIT', 'BOOT', 'CPU', 'REG'
+    ];
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(2, 3, 2, 0.08)'; 
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.font = `${fontSize}px var(--font-mono)`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        
+        if (Math.random() > 0.985) {
+          ctx.fillStyle = '#8ca63a';
+        } else {
+          ctx.fillStyle = 'rgba(91, 107, 44, 0.18)';
+        }
+
+        const x = i * 22;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(char, x, y);
+
+        if (y > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i] += 0.8 + Math.random() * 0.4;
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (isExiting || prefersReducedMotion) return;
+
+    const logPool = [
+      "SYS: INITIALIZING GABER-BOARD [REV 1.0]...",
+      "MEM: DRAM MODULE DETECTED // 16GB OK",
+      "CORE: ALL SYSTEMS NORMAL // ROM BOOT SUCCESS",
+      "BUS: CALIBRATING INTER-CHIP TRACES...",
+      "IO: MOUNTING HARDWARE INTERFACES...",
+      "NET: STACK MOUNTED // SSL ACTIVE ON PORT 443",
+      "SYS: BOOT SEQUENCE FINISHED SUCCESSFULLY",
+      "USER: PROFILE LOADED - MOHAMED M. GABER"
+    ];
+
+    let current = 0;
+    const interval = setInterval(() => {
+      if (current < logPool.length) {
+        setLogs((prev) => [...prev, logPool[current]]);
+        current++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 220);
+
+    return () => clearInterval(interval);
+  }, [isExiting, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (logContainerRef.current) {
+      logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight;
+    }
+  }, [logs]);
 
   const finish = () => {
     if (isExiting) return;
     setIsExiting(true);
-    sessionStorage.setItem(SPLASH_KEY, 'true');
   };
 
   useEffect(() => {
@@ -91,6 +187,7 @@ export default function SplashScreen({ onComplete }) {
       <div className="splash-ambient" aria-hidden="true" />
       <div className="splash-grid" aria-hidden="true" />
       <div className="splash-scanlines" aria-hidden="true" />
+      <canvas ref={canvasRef} className="splash-canvas" />
 
       <div className="splash-boot-panel pcb-corners">
         <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
@@ -185,23 +282,15 @@ export default function SplashScreen({ onComplete }) {
         )}
 
         {!prefersReducedMotion && (
-          <div className="splash-status" aria-live="polite">
-            <motion.p
-              className="splash-line"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showLog ? [0, 0.35, 0.15, 0.7, 0.5, 1] : 0 }}
-              transition={{ duration: 0.45, times: [0, 0.15, 0.3, 0.5, 0.7, 1] }}
-            >
-              &gt; initializing board...
-            </motion.p>
-            <motion.p
-              className="splash-line active"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showLog ? [0, 0.2, 0.1, 0.55, 0.85, 1] : 0 }}
-              transition={{ duration: 0.5, delay: 0.12, times: [0, 0.15, 0.3, 0.5, 0.75, 1] }}
-            >
-              &gt; profile loaded: M. GABER
-            </motion.p>
+          <div className="splash-status" ref={logContainerRef} aria-live="polite">
+            {logs.map((log, i) => (
+              <p
+                key={i}
+                className={`splash-line ${i === logs.length - 1 ? 'active' : ''}`}
+              >
+                &gt; {log}
+              </p>
+            ))}
           </div>
         )}
       </div>

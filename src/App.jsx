@@ -9,15 +9,29 @@ import SkillsGrid from './components/SkillsGrid';
 import Contact from './components/Contact';
 import CircuitTrace from './components/CircuitTrace';
 import SplashScreen from './components/SplashScreen';
-
-const SPLASH_KEY = 'portfolio-splash-seen';
+import BoardTuner from './components/BoardTuner';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
-  const [showSplash, setShowSplash] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return !sessionStorage.getItem(SPLASH_KEY);
-  });
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    // Reset scroll to top on page load/mount
+    window.scrollTo(0, 0);
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Global mouse coordinate tracking for interactive grid spotlight
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   useEffect(() => {
     const sections = ['hero', 'about', 'work', 'data', 'skills', 'contact'];
@@ -49,27 +63,41 @@ function App() {
     };
   }, []);
 
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  };
+
   return (
     <>
       <AnimatePresence>
         {showSplash && (
           <SplashScreen
             key="splash"
-            onComplete={() => setShowSplash(false)}
+            onComplete={handleSplashComplete}
           />
         )}
       </AnimatePresence>
 
-      <Nav activeSection={activeSection} />
-      <div className="pcb-board-wrapper" style={{ position: 'relative', width: '100%' }}>
-        <CircuitTrace activeSection={activeSection} />
-        <Hero />
-        <About />
-        <Work />
-        <DataSection />
-        <SkillsGrid />
-        <Contact />
-      </div>
+      {!showSplash && (
+        <>
+          <Nav activeSection={activeSection} />
+          <div className="pcb-board-wrapper" style={{ position: 'relative', width: '100%' }}>
+            <CircuitTrace activeSection={activeSection} />
+            <Hero />
+            <About />
+            <Work />
+            <DataSection />
+            <SkillsGrid />
+            <Contact />
+          </div>
+          <div className="grid-spotlight" />
+          <BoardTuner />
+        </>
+      )}
     </>
   );
 }

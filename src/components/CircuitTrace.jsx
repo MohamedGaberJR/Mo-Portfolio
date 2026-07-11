@@ -2,9 +2,70 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import './CircuitTrace.css';
 
+function NodeCircle({ pt, idx, smoothProgress, threshold }) {
+  const isCopperSection = pt.id === 'data';
+  const isFeatured = idx === 2; // CarKit featured chip node is larger
+
+  // We want a steep step transition around the threshold
+  const inputRange = [threshold - 0.015, threshold];
+
+  // We animate a single factor: activeOpacity from 0 to 1
+  const activeOpacity = useTransform(smoothProgress, inputRange, [0, 1], { clamp: true });
+  const scale = useTransform(smoothProgress, inputRange, [1, 1.05], { clamp: true });
+
+  return (
+    <motion.g 
+      className={`node-group ${isCopperSection ? 'copper' : ''}`}
+      style={{ scale }}
+    >
+      {/* 1. Inactive State Base */}
+      <circle
+        cx={pt.x}
+        cy={pt.y}
+        r={isFeatured ? 14 : 10}
+        className="node-ring inactive"
+      />
+      <circle
+        cx={pt.x}
+        cy={pt.y}
+        r={isFeatured ? 8 : 5}
+        className="node-core inactive"
+      />
+
+      {/* 2. Active State Overlay (fades in) */}
+      <motion.g style={{ opacity: activeOpacity }}>
+        {/* Outer halo blur glow */}
+        <circle
+          cx={pt.x}
+          cy={pt.y}
+          r={isFeatured ? 18 : 14}
+          className="node-glow"
+          pointerEvents="none"
+          style={{ filter: 'blur(3px)' }}
+        />
+        {/* Active solder joint */}
+        <circle
+          cx={pt.x}
+          cy={pt.y}
+          r={isFeatured ? 14 : 10}
+          className="node-ring active"
+        />
+        {/* Active solder core */}
+        <circle
+          cx={pt.x}
+          cy={pt.y}
+          r={isFeatured ? 8 : 5}
+          className="node-core active"
+        />
+      </motion.g>
+    </motion.g>
+  );
+}
+
 export default function CircuitTrace({ activeSection }) {
   const [points, setPoints] = useState([]);
   const [pathD, setPathD] = useState('');
+  const [pointProgresses, setPointProgresses] = useState([]);
   const containerRef = useRef(null);
 
   // Track native scroll progress of the viewport
@@ -102,6 +163,46 @@ export default function CircuitTrace({ activeSection }) {
     setPathD(pathStr);
   }, [points]);
 
+  // Calculate cumulative path distances to map each node to its exact trigger ratio
+  useEffect(() => {
+    if (points.length < 2) return;
+
+    const segmentLengths = [];
+    let totalLength = 0;
+
+    for (let i = 0; i < points.length - 1; i++) {
+      const p1 = points[i];
+      const p2 = points[i + 1];
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+
+      let len = 0;
+      if (Math.abs(dx) < 8) {
+        len = dy;
+      } else {
+        const maxOffset = Math.abs(dx);
+        const verticalSegment = dy - maxOffset;
+
+        if (verticalSegment > 0) {
+          len = verticalSegment + maxOffset * Math.sqrt(2);
+        } else {
+          len = Math.sqrt(dx * dx + dy * dy);
+        }
+      }
+      segmentLengths.push(len);
+      totalLength += len;
+    }
+
+    const progresses = [0];
+    let currentLength = 0;
+    for (let i = 0; i < segmentLengths.length; i++) {
+      currentLength += segmentLengths[i];
+      progresses.push(totalLength > 0 ? currentLength / totalLength : 0);
+    }
+
+    setPointProgresses(progresses);
+  }, [points]);
+
   return (
     <div className="circuit-trace-container" ref={containerRef}>
       <svg className="circuit-trace-svg" width="100%" height="100%">
@@ -125,32 +226,15 @@ export default function CircuitTrace({ activeSection }) {
         )}
 
         {/* Nodes / Solder Pads */}
-        {points.map((pt, idx) => {
-          const isActive = activeSection === pt.id;
-          const isCopperSection = pt.id === 'data'; // Use copper accent for data section
-
-          return (
-            <g key={pt.id} className={`node-group ${isActive ? 'active' : ''} ${isCopperSection ? 'copper' : ''}`}>
-              {/* Outer halo / solder joint */}
-              <circle
-                cx={pt.x}
-                cy={pt.y}
-                r={idx === 2 ? 14 : 10} // CarKit (idx 2, #work-carkit) is the main featured chip, so larger node
-                className="node-ring"
-              />
-
-              {/* Solder core */}
-              <circle
-                cx={pt.x}
-                cy={pt.y}
-                r={idx === 2 ? 8 : 5}
-                className="node-core"
-              />
-
-
-            </g>
-          );
-        })}
+        {points.map((pt, idx) => (
+          <NodeCircle
+            key={pt.id}
+            pt={pt}
+            idx={idx}
+            smoothProgress={smoothProgress}
+            threshold={pointProgresses[idx] || 0}
+          />
+        ))}
       </svg>
     </div>
   );

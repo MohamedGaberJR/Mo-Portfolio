@@ -337,3 +337,23 @@ section {
     transition-delay: 0s !important;
   }
 }
+
+.grid-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* Above the body background but behind container elements */
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+    var(--olive-signal-glow),
+    transparent 80%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.3; /* Make the spotlight soft and subtle */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-spotlight {
+    display: none;
+  }
+}

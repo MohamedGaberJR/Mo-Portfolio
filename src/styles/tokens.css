@@ -62,3 +62,27 @@
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
 }
+
+/* Copper Orange Jumper Color Theme Override */
+html.theme-copper {
+  --olive-primary: #7c4c1a;
+  --olive-signal: #d49342;
+  --olive-bright: #ffb85c;
+  --olive-signal-glow: rgba(212, 147, 66, 0.28);
+  --olive-bright-glow: rgba(255, 184, 92, 0.18);
+  --border-subtle: rgba(124, 76, 26, 0.24);
+  --border-active: rgba(212, 147, 66, 0.5);
+  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, #e67e22 100%);
+}
+
+/* Cobalt Blue Jumper Color Theme Override */
+html.theme-cobalt {
+  --olive-primary: #1c3d5a;
+  --olive-signal: #3182ce;
+  --olive-bright: #63b3ed;
+  --olive-signal-glow: rgba(49, 130, 206, 0.28);
+  --olive-bright-glow: rgba(99, 179, 237, 0.18);
+  --border-subtle: rgba(28, 61, 90, 0.24);
+  --border-active: rgba(49, 130, 206, 0.5);
+  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, #3b82f6 100%);
+}

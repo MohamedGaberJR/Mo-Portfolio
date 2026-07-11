@@ -65,6 +65,7 @@
 
 /* Terminal Boot Styling */
 .terminal-boot {
+  position: relative;
   width: 100%;
   max-width: 500px;
   background-color: var(--bg-panel);
@@ -73,6 +74,31 @@
   font-family: var(--font-mono);
   box-shadow: var(--panel-shadow);
   overflow: hidden;
+}
+
+.terminal-boot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.15) 50%
+  ), linear-gradient(
+    90deg, 
+    rgba(140, 166, 58, 0.05), 
+    rgba(184, 118, 46, 0.02), 
+    rgba(140, 166, 58, 0.05)
+  );
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: crt-flicker 0.15s infinite;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.75; }
+  50% { opacity: 0.85; }
+  100% { opacity: 0.78; }
 }
 
 .terminal-header {
@@ -221,6 +247,7 @@
   position: relative;
   width: 220px;
   height: 220px;
+  perspective: 1000px;
 }
 
 @media (min-width: 768px) {
@@ -280,7 +307,9 @@
     0 0 0 1px var(--border-subtle),
     0 0 30px rgba(140, 166, 58, 0.04),
     inset 0 0 20px rgba(140, 166, 58, 0.04);
-  transition: all var(--transition-normal);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .hero-avatar-bezel:hover {
@@ -289,7 +318,7 @@
     0 0 40px var(--olive-signal-glow),
     0 0 80px rgba(140, 166, 58, 0.06),
     0 0 0 1px rgba(140, 166, 58, 0.3);
-  transform: scale(1.02);
+  transform: scale(1.03) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
 }
 
 .hero-avatar-img {
