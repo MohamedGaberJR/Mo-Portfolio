@@ -249,7 +249,7 @@
 
 .color-btn.active {
   border-color: var(--olive-signal);
-  background-color: rgba(140, 166, 58, 0.08);
+  background-color: rgba(var(--olive-signal-rgb), 0.08);
   color: var(--olive-signal);
   box-shadow: 0 0 8px var(--olive-signal-glow);
 }
@@ -265,8 +265,8 @@
   background-color: #8ca63a;
 }
 
-.preview-copper {
-  background-color: #d49342;
+.preview-crimson {
+  background-color: #df232c;
 }
 
 .preview-cobalt {
@@ -300,9 +300,9 @@
 
 .audio-btn.active {
   border-color: var(--olive-signal);
-  background-color: rgba(140, 166, 58, 0.08);
+  background-color: rgba(var(--olive-signal-rgb), 0.08);
   color: var(--olive-signal);
-  box-shadow: 0 0 10px rgba(140, 166, 58, 0.08);
+  box-shadow: 0 0 10px rgba(var(--olive-signal-rgb), 0.08);
 }
 
 .audio-btn .led-indicator {

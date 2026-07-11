@@ -47,7 +47,7 @@
 
 .chip-package--active {
   border-color: var(--olive-signal);
-  box-shadow: 0 0 18px var(--olive-signal-glow), inset 0 0 10px rgba(126, 148, 50, 0.12);
+  box-shadow: 0 0 18px var(--olive-signal-glow), inset 0 0 10px rgba(var(--olive-primary-rgb), 0.12);
 }
 
 .chip-package--active .chip-die {
@@ -81,7 +81,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: rgba(108, 125, 61, 0.4);
+  background-color: rgba(var(--olive-primary-rgb), 0.4);
   transition: all var(--transition-fast);
 }
 
@@ -109,7 +109,7 @@
 
 .logo-chip:hover .chip-package {
   border-color: var(--olive-signal);
-  box-shadow: 0 0 15px var(--olive-signal-glow), inset 0 0 8px rgba(168, 194, 76, 0.1);
+  box-shadow: 0 0 15px var(--olive-signal-glow), inset 0 0 8px rgba(var(--olive-bright-rgb), 0.1);
   transform: scale(1.03);
 }
 

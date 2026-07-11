@@ -11,25 +11,28 @@
   --text-primary: #eae7da;     /* Main body text — warm off-white */
   --text-highlight: #f5f2e8;   /* Emphasis text — warmer white for key headings */
   --text-muted: #81886f;       /* Secondary text — slightly deeper for balance */
-  --copper-accent: #b8762e;    /* Rare accent — warmer copper for data/analytics moments */
-  --copper-bright: #d49342;    /* Bright copper — for gradients */
-  --copper-accent-glow: rgba(184, 118, 46, 0.3);
-  --olive-signal-glow: rgba(140, 166, 58, 0.28);
-  --olive-bright-glow: rgba(168, 194, 76, 0.18);
-  --border-subtle: rgba(91, 107, 44, 0.18);
-  --border-active: rgba(140, 166, 58, 0.5);
+  --crimson-accent: #df232c;   /* Rare accent — premium crimson for data/analytics moments */
+  --crimson-bright: #ff4d56;   /* Bright crimson — for gradients */
+  --crimson-accent-glow: rgba(223, 35, 44, 0.3);
+  --olive-primary-rgb: 91, 107, 44;
+  --olive-signal-rgb: 140, 166, 58;
+  --olive-bright-rgb: 168, 194, 76;
+  --olive-signal-glow: rgba(var(--olive-signal-rgb), 0.28);
+  --olive-bright-glow: rgba(var(--olive-bright-rgb), 0.18);
+  --border-subtle: rgba(var(--olive-primary-rgb), 0.18);
+  --border-active: rgba(var(--olive-signal-rgb), 0.5);
   --panel-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
   --panel-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.65);
   --panel-glow: 0 0 24px var(--olive-signal-glow);
   --panel-glow-strong: 0 0 40px var(--olive-signal-glow), 0 0 80px var(--olive-bright-glow);
   --glass-bg: rgba(6, 8, 5, 0.88);
-  --glass-border: rgba(91, 107, 44, 0.22);
+  --glass-border: rgba(var(--olive-primary-rgb), 0.22);
 
   /* Premium Gradients */
-  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, var(--copper-accent) 100%);
-  --gradient-olive: linear-gradient(135deg, rgba(91, 107, 44, 0.15), rgba(140, 166, 58, 0.08));
-  --gradient-copper: linear-gradient(135deg, rgba(184, 118, 46, 0.12), rgba(212, 147, 66, 0.06));
-  --gradient-card-hover: radial-gradient(ellipse at 50% 0%, rgba(140, 166, 58, 0.08), transparent 60%);
+  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, var(--crimson-accent) 100%);
+  --gradient-olive: linear-gradient(135deg, rgba(var(--olive-primary-rgb), 0.15), rgba(var(--olive-signal-rgb), 0.08));
+  --gradient-crimson: linear-gradient(135deg, rgba(223, 35, 44, 0.12), rgba(255, 77, 86, 0.06));
+  --gradient-card-hover: radial-gradient(ellipse at 50% 0%, rgba(var(--olive-signal-rgb), 0.08), transparent 60%);
   --gradient-section-divider: linear-gradient(90deg, transparent, var(--olive-primary), var(--olive-signal), var(--olive-primary), transparent);
 
   /* Typography */
@@ -63,16 +66,19 @@
   --border-radius-lg: 16px;
 }
 
-/* Copper Orange Jumper Color Theme Override */
-html.theme-copper {
-  --olive-primary: #7c4c1a;
-  --olive-signal: #d49342;
-  --olive-bright: #ffb85c;
-  --olive-signal-glow: rgba(212, 147, 66, 0.28);
-  --olive-bright-glow: rgba(255, 184, 92, 0.18);
-  --border-subtle: rgba(124, 76, 26, 0.24);
-  --border-active: rgba(212, 147, 66, 0.5);
-  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, #e67e22 100%);
+/* Crimson Red Jumper Color Theme Override */
+html.theme-crimson {
+  --olive-primary: #8a1f1f;
+  --olive-signal: #e03131;
+  --olive-bright: #ff6b6b;
+  --olive-primary-rgb: 138, 31, 31;
+  --olive-signal-rgb: 224, 49, 49;
+  --olive-bright-rgb: 255, 107, 107;
+  --olive-signal-glow: rgba(var(--olive-signal-rgb), 0.28);
+  --olive-bright-glow: rgba(var(--olive-bright-rgb), 0.18);
+  --border-subtle: rgba(var(--olive-primary-rgb), 0.24);
+  --border-active: rgba(var(--olive-signal-rgb), 0.5);
+  --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, #ff8787 100%);
 }
 
 /* Cobalt Blue Jumper Color Theme Override */
@@ -80,9 +86,12 @@ html.theme-cobalt {
   --olive-primary: #1c3d5a;
   --olive-signal: #3182ce;
   --olive-bright: #63b3ed;
-  --olive-signal-glow: rgba(49, 130, 206, 0.28);
-  --olive-bright-glow: rgba(99, 179, 237, 0.18);
-  --border-subtle: rgba(28, 61, 90, 0.24);
-  --border-active: rgba(49, 130, 206, 0.5);
+  --olive-primary-rgb: 28, 61, 90;
+  --olive-signal-rgb: 49, 130, 206;
+  --olive-bright-rgb: 99, 179, 237;
+  --olive-signal-glow: rgba(var(--olive-signal-rgb), 0.28);
+  --olive-bright-glow: rgba(var(--olive-bright-rgb), 0.18);
+  --border-subtle: rgba(var(--olive-primary-rgb), 0.24);
+  --border-active: rgba(var(--olive-signal-rgb), 0.5);
   --gradient-hero: linear-gradient(135deg, var(--olive-signal) 0%, var(--olive-bright) 50%, #3b82f6 100%);
 }

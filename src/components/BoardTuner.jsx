@@ -10,8 +10,8 @@ export default function BoardTuner() {
   // Apply theme class to <html> element
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('theme-copper', 'theme-cobalt');
-    if (theme === 'copper') root.classList.add('theme-copper');
+    root.classList.remove('theme-crimson', 'theme-cobalt');
+    if (theme === 'crimson') root.classList.add('theme-crimson');
     if (theme === 'cobalt') root.classList.add('theme-cobalt');
   }, [theme]);
 
@@ -126,12 +126,12 @@ export default function BoardTuner() {
                   OLIVE
                 </button>
                 <button
-                  className={`color-btn color-btn--copper ${theme === 'copper' ? 'active' : ''}`}
-                  onClick={() => setTheme('copper')}
-                  title="Copper Orange"
+                  className={`color-btn color-btn--crimson ${theme === 'crimson' ? 'active' : ''}`}
+                  onClick={() => setTheme('crimson')}
+                  title="Crimson Red"
                 >
-                  <span className="color-preview preview-copper" />
-                  COPPER
+                  <span className="color-preview preview-crimson" />
+                  CRIMSON
                 </button>
                 <button
                   className={`color-btn color-btn--cobalt ${theme === 'cobalt' ? 'active' : ''}`}

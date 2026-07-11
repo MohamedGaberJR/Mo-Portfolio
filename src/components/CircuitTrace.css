@@ -57,13 +57,13 @@
   stroke-width: 1px;
 }
 
-/* Copper / Data Inactive State */
-.node-group.copper .node-ring.inactive {
-  stroke: rgba(201, 143, 74, 0.4);
+/* Crimson / Data Inactive State */
+.node-group.crimson .node-ring.inactive {
+  stroke: rgba(223, 35, 44, 0.4);
 }
 
-.node-group.copper .node-core.inactive {
-  stroke: rgba(201, 143, 74, 0.4);
+.node-group.crimson .node-core.inactive {
+  stroke: rgba(223, 35, 44, 0.4);
 }
 
 /* 2. ACTIVE STATED OVERLAYS */
@@ -79,14 +79,14 @@
   stroke-width: 1px;
 }
 
-/* Copper / Data Active State */
-.node-group.copper .node-ring.active {
-  stroke: var(--copper-accent);
+/* Crimson / Data Active State */
+.node-group.crimson .node-ring.active {
+  stroke: var(--crimson-accent);
 }
 
-.node-group.copper .node-core.active {
-  fill: var(--copper-accent);
-  stroke: var(--copper-accent);
+.node-group.crimson .node-core.active {
+  fill: var(--crimson-accent);
+  stroke: var(--crimson-accent);
 }
 
 /* 3. SOFT GLOW RINGS (Framer Motion blurred overlays) */
@@ -96,6 +96,6 @@
   stroke-width: 3px;
 }
 
-.node-group.copper .node-glow {
-  stroke: var(--copper-accent);
+.node-group.crimson .node-glow {
+  stroke: var(--crimson-accent);
 }

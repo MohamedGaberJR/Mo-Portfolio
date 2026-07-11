@@ -59,7 +59,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(140, 166, 58, 0.03), transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(var(--olive-signal-rgb), 0.03), transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-normal);
   pointer-events: none;
@@ -76,7 +76,7 @@
 }
 
 .category-header {
-  background: linear-gradient(135deg, rgba(91, 107, 44, 0.1), rgba(91, 107, 44, 0.04));
+  background: linear-gradient(135deg, rgba(var(--olive-primary-rgb), 0.1), rgba(var(--olive-primary-rgb), 0.04));
   padding: 0.75rem;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
@@ -159,7 +159,7 @@
 }
 
 .skill-row:hover {
-  background-color: rgba(140, 166, 58, 0.02);
+  background-color: rgba(var(--olive-signal-rgb), 0.02);
 }
 
 .skill-row:last-child {

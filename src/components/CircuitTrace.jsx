@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import './CircuitTrace.css';
 
 function NodeCircle({ pt, idx, smoothProgress, threshold }) {
-  const isCopperSection = pt.id === 'data';
+  const isCrimsonSection = pt.id === 'data';
   const isFeatured = idx === 2; // CarKit featured chip node is larger
 
   // We want a steep step transition around the threshold
@@ -15,7 +15,7 @@ function NodeCircle({ pt, idx, smoothProgress, threshold }) {
 
   return (
     <motion.g 
-      className={`node-group ${isCopperSection ? 'copper' : ''}`}
+      className={`node-group ${isCrimsonSection ? 'crimson' : ''}`}
       style={{ scale }}
     >
       {/* 1. Inactive State Base */}

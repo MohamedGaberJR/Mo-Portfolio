@@ -40,8 +40,8 @@
   width: 380px;
   height: 540px;
   background:
-    radial-gradient(ellipse 60% 50%, rgba(140, 166, 58, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 60% 30%, rgba(168, 194, 76, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50%, rgba(var(--olive-signal-rgb), 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 60% 30%, rgba(var(--olive-bright-rgb), 0.04) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
   animation: ambient-breathe 6s ease-in-out infinite alternate;
@@ -62,8 +62,8 @@
   padding: 10px;
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(108, 125, 61, 0.12),
-    0 0 60px rgba(140, 166, 58, 0.03),
+    0 0 0 1px rgba(var(--olive-primary-rgb), 0.12),
+    0 0 60px rgba(var(--olive-signal-rgb), 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -73,9 +73,9 @@
 .phone-mockup:hover {
   box-shadow:
     0 40px 100px rgba(0, 0, 0, 0.8),
-    0 0 50px rgba(140, 166, 58, 0.08),
-    0 0 0 1px rgba(140, 166, 58, 0.35),
-    0 0 100px rgba(140, 166, 58, 0.03),
+    0 0 50px rgba(var(--olive-signal-rgb), 0.08),
+    0 0 0 1px rgba(var(--olive-signal-rgb), 0.35),
+    0 0 100px rgba(var(--olive-signal-rgb), 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transform: translateY(-8px) scale(1.02);
 }
@@ -102,22 +102,22 @@
   height: 10px;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #1a2412, #060806);
-  border: 1.5px solid rgba(108, 125, 61, 0.25);
-  box-shadow: 0 0 4px rgba(140, 166, 58, 0.15);
+  border: 1.5px solid rgba(var(--olive-primary-rgb), 0.25);
+  box-shadow: 0 0 4px rgba(var(--olive-signal-rgb), 0.15);
 }
 
 .phone-bezel {
   position: relative;
   width: 100%;
   background-color: #000;
-  border: 1.5px solid rgba(108, 125, 61, 0.2);
+  border: 1.5px solid rgba(var(--olive-primary-rgb), 0.2);
   border-radius: 38px;
   overflow: hidden;
   transition: border-color 0.4s ease;
 }
 
 .phone-mockup:hover .phone-bezel {
-  border-color: rgba(140, 166, 58, 0.4);
+  border-color: rgba(var(--olive-signal-rgb), 0.4);
 }
 
 .phone-screen {
@@ -135,7 +135,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(140, 166, 58, 0.01) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--olive-signal-rgb), 0.01) 50%, transparent 100%);
   background-size: 100% 200%;
   animation: screen-scan 8s linear infinite;
   pointer-events: none;
@@ -171,7 +171,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.6rem 1rem;
-  border-bottom: 1px solid rgba(108, 125, 61, 0.1);
+  border-bottom: 1px solid rgba(var(--olive-primary-rgb), 0.1);
 }
 
 .app-header-left {
@@ -208,8 +208,8 @@
   font-family: var(--font-mono);
   font-size: 0.55rem;
   color: var(--olive-signal);
-  background-color: rgba(140, 166, 58, 0.1);
-  border: 1px solid rgba(140, 166, 58, 0.3);
+  background-color: rgba(var(--olive-signal-rgb), 0.1);
+  border: 1px solid rgba(var(--olive-signal-rgb), 0.3);
   padding: 2px 8px;
   border-radius: 8px;
   font-weight: 600;
@@ -224,7 +224,7 @@
 
   100% {
     opacity: 1;
-    box-shadow: 0 0 8px rgba(140, 166, 58, 0.25);
+    box-shadow: 0 0 8px rgba(var(--olive-signal-rgb), 0.25);
   }
 }
 
@@ -244,7 +244,7 @@
   height: 110px;
   background: linear-gradient(135deg, #080a06 0%, #0f120d 50%, #0a0c08 100%);
   border-radius: 14px;
-  border: 1px solid rgba(108, 125, 61, 0.12);
+  border: 1px solid rgba(var(--olive-primary-rgb), 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,10 +272,10 @@
   font-family: var(--font-mono);
   font-size: 0.45rem;
   color: var(--olive-signal);
-  background-color: rgba(140, 166, 58, 0.1);
+  background-color: rgba(var(--olive-signal-rgb), 0.1);
   padding: 2px 6px;
   border-radius: 6px;
-  border: 1px solid rgba(140, 166, 58, 0.25);
+  border: 1px solid rgba(var(--olive-signal-rgb), 0.25);
   letter-spacing: 0.05em;
   font-weight: 600;
 }
@@ -283,14 +283,14 @@
 /* Listing card */
 .mock-listing-card {
   background-color: var(--bg-panel);
-  border: 1px solid rgba(108, 125, 61, 0.12);
+  border: 1px solid rgba(var(--olive-primary-rgb), 0.12);
   border-radius: 12px;
   padding: 0.7rem 0.8rem;
   transition: border-color 0.3s ease;
 }
 
 .phone-mockup:hover .mock-listing-card {
-  border-color: rgba(140, 166, 58, 0.22);
+  border-color: rgba(var(--olive-signal-rgb), 0.22);
 }
 
 .listing-header {
@@ -349,7 +349,7 @@
 
 .stat-card {
   background-color: rgba(13, 16, 11, 0.5);
-  border: 1px solid rgba(108, 125, 61, 0.1);
+  border: 1px solid rgba(var(--olive-primary-rgb), 0.15);
   padding: 0.5rem 0.3rem;
   border-radius: 10px;
   text-align: center;
@@ -357,15 +357,15 @@
 }
 
 .phone-mockup:hover .stat-card {
-  border-color: rgba(140, 166, 58, 0.2);
+  border-color: rgba(var(--olive-signal-rgb), 0.2);
 }
 
 .stat-card.accent {
-  border-color: rgba(184, 118, 46, 0.2);
+  border-color: rgba(223, 35, 44, 0.2);
 }
 
 .stat-card.accent .stat-value {
-  color: var(--copper-accent);
+  color: var(--crimson-accent);
 }
 
 .stat-value {
@@ -390,7 +390,7 @@
   display: flex;
   justify-content: space-around;
   padding: 0.5rem 0 0.3rem;
-  border-top: 1px solid rgba(108, 125, 61, 0.08);
+  border-top: 1px solid rgba(var(--olive-primary-rgb), 0.08);
   margin-top: auto;
 }
 
@@ -489,7 +489,7 @@
   display: inline-flex;
   gap: 0.5rem;
   background: linear-gradient(135deg, var(--bg-panel), var(--bg-elevated));
-  border: 1px solid rgba(140, 166, 58, 0.25);
+  border: 1px solid rgba(var(--olive-signal-rgb), 0.25);
   padding: 0.4rem 0.8rem;
   border-radius: var(--border-radius-sm);
   font-family: var(--font-mono);
@@ -545,7 +545,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
   background-color: var(--bg-panel);
-  border: 1px solid rgba(108, 125, 61, 0.3);
+  border: 1px solid rgba(var(--olive-primary-rgb), 0.3);
   color: var(--text-muted);
   padding: 0.25rem 0.6rem;
   border-radius: var(--border-radius-sm);

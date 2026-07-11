@@ -107,7 +107,7 @@ export default function Hero() {
               <p className="hero-subtitle">
                 Fresh BIS graduate from AAST Cairo, crafting{' '}
                 <span className="highlight-signal">interactive user interfaces</span> with a
-                background in <span className="highlight-copper">structural data analytics</span>.
+                background in <span className="highlight-crimson">structural data analytics</span>.
               </p>
 
               <div className="hero-actions">

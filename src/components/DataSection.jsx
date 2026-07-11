@@ -6,7 +6,7 @@ import './DataSection.css';
 export default function DataSection() {
   const [hoveredPoint, setHoveredPoint] = useState(null);
 
-  // Data for the interactive SVG copper line chart
+  // Data for the interactive SVG crimson line chart
   const chartPoints = [
     { x: 30, y: 150, value: 'Q1: Data Prep', desc: 'ETL Pipelines established' },
     { x: 90, y: 110, value: 'Q2: ERD Modeling', desc: 'Relational logic mapped' },
@@ -26,8 +26,8 @@ export default function DataSection() {
 
         <div className="data-grid">
           <ScrollReveal className="data-info">
-            <span className="eyebrow-copper">03 // DATA CORES & ANALYTICS</span>
-            <h2 className="section-title title-copper">
+            <span className="eyebrow-crimson">03 // DATA CORES & ANALYTICS</span>
+            <h2 className="section-title title-crimson">
               Data & Analytics
             </h2>
             <p className="data-desc">
@@ -36,7 +36,7 @@ export default function DataSection() {
 
             <div className="data-highlights">
               <div className="data-highlight-item">
-                <Database size={16} className="highlight-icon-copper" />
+                <Database size={16} className="highlight-icon-crimson" />
                 <div>
                   <h4>Database Design & ERDs</h4>
                   <p>Lead architect on TradeLink database schemas. Expert in designing normalizations (1NF to 3NF), establishing data dictionaries, and writing optimized CRUD matrices.</p>
@@ -44,7 +44,7 @@ export default function DataSection() {
               </div>
 
               <div className="data-highlight-item">
-                <BarChart2 size={16} className="highlight-icon-copper" />
+                <BarChart2 size={16} className="highlight-icon-crimson" />
                 <div>
                   <h4>Power BI & Data Modeling</h4>
                   <p>Experienced in writing advanced DAX (Data Analysis Expressions) queries, managing star/snowflake schemas, and formatting Tableau dashboards for executive reporting.</p>
@@ -56,7 +56,7 @@ export default function DataSection() {
           <ScrollReveal className="data-visual" delay={0.12}>
             <div className="dashboard-board">
               <div className="board-header">
-                <span className="board-title">COPPER REGISTRY INTERFACE</span>
+                <span className="board-title">CRIMSON REGISTRY INTERFACE</span>
                 <span className="board-freq">4.1 GHz</span>
               </div>
 
@@ -65,28 +65,28 @@ export default function DataSection() {
                 <div className="chart-container">
                   <svg className="analytics-svg" viewBox="0 0 300 200">
                     <defs>
-                      <linearGradient id="copper-gradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="var(--copper-accent)" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="var(--copper-accent)" stopOpacity="0" />
+                      <linearGradient id="crimson-gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="var(--crimson-accent)" stopOpacity="0.4" />
+                        <stop offset="100%" stopColor="var(--crimson-accent)" stopOpacity="0" />
                       </linearGradient>
                     </defs>
 
                     {/* Grid lines */}
-                    <line x1="10" y1="40" x2="290" y2="40" stroke="rgba(201, 143, 74, 0.08)" strokeDasharray="3,3" />
-                    <line x1="10" y1="90" x2="290" y2="90" stroke="rgba(201, 143, 74, 0.08)" strokeDasharray="3,3" />
-                    <line x1="10" y1="140" x2="290" y2="140" stroke="rgba(201, 143, 74, 0.08)" strokeDasharray="3,3" />
+                    <line x1="10" y1="40" x2="290" y2="40" stroke="rgba(223, 35, 44, 0.08)" strokeDasharray="3,3" />
+                    <line x1="10" y1="90" x2="290" y2="90" stroke="rgba(223, 35, 44, 0.08)" strokeDasharray="3,3" />
+                    <line x1="10" y1="140" x2="290" y2="140" stroke="rgba(223, 35, 44, 0.08)" strokeDasharray="3,3" />
 
                     {/* Area under curve */}
                     <path
                       d={`${pathD} L 270 180 L 30 180 Z`}
-                      fill="url(#copper-gradient)"
+                      fill="url(#crimson-gradient)"
                     />
 
                     {/* Main line */}
                     <path
                       d={pathD}
                       fill="none"
-                      stroke="var(--copper-accent)"
+                      stroke="var(--crimson-accent)"
                       strokeWidth="2.5"
                     />
 
@@ -128,19 +128,19 @@ export default function DataSection() {
 
                 {/* Dashboard Metrics */}
                 <div className="dashboard-stats-grid">
-                  <div className="stat-pill-copper">
-                    <span className="stat-lbl-copper">QUERY OPT</span>
-                    <span className="stat-val-copper">94.8%</span>
+                  <div className="stat-pill-crimson">
+                    <span className="stat-lbl-crimson">QUERY OPT</span>
+                    <span className="stat-val-crimson">94.8%</span>
                   </div>
-                  <div className="stat-pill-copper">
-                    <span className="stat-lbl-copper">DAX STACK</span>
-                    <span className="stat-val-copper">ACTIVE</span>
+                  <div className="stat-pill-crimson">
+                    <span className="stat-lbl-crimson">DAX STACK</span>
+                    <span className="stat-val-crimson">ACTIVE</span>
                   </div>
                 </div>
               </div>
 
               <div className="board-footer">
-                <span className="footer-silk-copper">DATA INTEGRITY BLOCK v1.2</span>
+                <span className="footer-silk-crimson">DATA INTEGRITY BLOCK v1.2</span>
               </div>
             </div>
           </ScrollReveal>

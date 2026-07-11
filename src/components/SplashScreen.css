@@ -57,7 +57,7 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(140, 166, 58, 0.05) 50%,
+    rgba(var(--olive-signal-rgb), 0.05) 50%,
     transparent 100%
   );
   animation: scanline-sweep 6s linear infinite;
@@ -117,7 +117,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(91, 107, 44, 0.5);
+  background: rgba(var(--olive-primary-rgb), 0.5);
   transition: all var(--transition-fast);
 }
 

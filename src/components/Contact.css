@@ -1,10 +1,10 @@
 .contact-section {
   position: relative;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(140, 166, 58, 0.05), transparent 60%),
-    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(140, 166, 58, 0.02), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(var(--olive-signal-rgb), 0.05), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(var(--olive-signal-rgb), 0.02), transparent 50%),
     var(--bg-base);
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-md) 0;
 }
 
 .contact-section::before {
@@ -21,7 +21,7 @@
 
 @media (min-width: 768px) {
   .contact-section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
   }
 }
 
@@ -31,7 +31,7 @@
 
 .contact-panel {
   max-width: 800px;
-  margin: 0 auto var(--spacing-lg) auto;
+  margin: 0 auto var(--spacing-md) auto;
   text-align: center;
   z-index: 2;
 }
@@ -95,7 +95,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(140, 166, 58, 0.04), transparent 60%);
+  background: radial-gradient(ellipse at 30% 50%, rgba(var(--olive-signal-rgb), 0.04), transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-fast);
   pointer-events: none;
@@ -148,7 +148,7 @@
 
 .footer-terminal {
   max-width: 500px;
-  margin: 0 auto var(--spacing-md) auto;
+  margin: 0 auto var(--spacing-sm) auto;
 }
 
 .footer-terminal .terminal-panel-body {
@@ -208,8 +208,8 @@
 
 .back-to-top-btn:hover {
   color: var(--olive-signal);
-  border-color: rgba(140, 166, 58, 0.2);
-  background: rgba(140, 166, 58, 0.04);
+  border-color: rgba(var(--olive-signal-rgb), 0.2);
+  background: rgba(var(--olive-signal-rgb), 0.04);
 }
 
 @media (prefers-reduced-motion: reduce) {
