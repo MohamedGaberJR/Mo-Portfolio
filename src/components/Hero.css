@@ -80,15 +80,11 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.15) 50%
-  ), linear-gradient(
-    90deg, 
-    rgba(var(--olive-signal-rgb), 0.05), 
-    rgba(223, 35, 44, 0.02), 
-    rgba(var(--olive-signal-rgb), 0.05)
-  );
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg,
+      rgba(var(--olive-signal-rgb), 0.05),
+      rgba(223, 35, 44, 0.02),
+      rgba(var(--olive-signal-rgb), 0.05));
   background-size: 100% 4px, 6px 100%;
   pointer-events: none;
   opacity: 0.8;
@@ -96,9 +92,17 @@
 }
 
 @keyframes crt-flicker {
-  0% { opacity: 0.75; }
-  50% { opacity: 0.85; }
-  100% { opacity: 0.78; }
+  0% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0.78;
+  }
 }
 
 .terminal-header {
@@ -328,11 +332,13 @@
   object-fit: cover;
   display: block;
   filter: grayscale(15%) contrast(108%);
-  transition: all var(--transition-normal);
+  transform: scale(1.2);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter var(--transition-normal);
 }
 
 .hero-avatar-bezel:hover .hero-avatar-img {
   filter: grayscale(0%) contrast(115%) brightness(105%);
+  transform: scale(1.28);
 }
 
 /* Subtle scan overlay */

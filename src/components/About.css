@@ -93,13 +93,11 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 2px,
-    rgba(var(--olive-signal-rgb), 0.012) 2px,
-    rgba(var(--olive-signal-rgb), 0.012) 3px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(var(--olive-signal-rgb), 0.012) 2px,
+      rgba(var(--olive-signal-rgb), 0.012) 3px);
   pointer-events: none;
   border-radius: inherit;
 }
@@ -127,8 +125,15 @@
 }
 
 @keyframes glow-pulse {
-  0% { opacity: 0.6; text-shadow: none; }
-  100% { opacity: 1; text-shadow: 0 0 8px var(--olive-signal-glow); }
+  0% {
+    opacity: 0.6;
+    text-shadow: none;
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 8px var(--olive-signal-glow);
+  }
 }
 
 .spec-card-body {
@@ -216,5 +221,295 @@
 @media (prefers-reduced-motion: reduce) {
   .spec-status {
     animation: none;
+  }
+}
+
+/* ==========================================
+   RPG CARD CUSTOMIZATIONS & 3D FLIP MECHANICS
+   ========================================== */
+
+/* Cybernetic Jumper Tabs */
+.specs-tab-header {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: -1px;
+  /* Overlaps with card border */
+  font-family: var(--font-mono);
+  padding-right: 0.5rem;
+}
+
+.specs-tab-btn {
+  background-color: rgba(7, 9, 7, 0.45);
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+  position: relative;
+  z-index: 5;
+}
+
+.specs-tab-btn:hover {
+  color: var(--text-highlight);
+  background-color: rgba(7, 9, 7, 0.7);
+  border-color: var(--olive-primary);
+}
+
+.specs-tab-btn.active {
+  color: var(--olive-signal);
+  background-color: var(--bg-panel);
+  border-color: var(--border-active);
+  box-shadow: 0 -4px 10px rgba(var(--olive-signal-rgb), 0.04);
+}
+
+.tab-led {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: all var(--transition-fast);
+}
+
+.specs-tab-btn.active .tab-led {
+  background-color: var(--olive-signal);
+  box-shadow: 0 0 6px var(--olive-signal);
+}
+
+/* 3D Flip Layout */
+.specs-card-wrapper {
+  perspective: 1500px;
+  position: relative;
+  width: 100%;
+}
+
+.specs-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.specs-card-wrapper.flipped .specs-card-inner {
+  transform: rotateY(180deg);
+}
+
+.spec-card-front,
+.spec-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--panel-shadow);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.spec-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Position controllers to prevent height collapses */
+.relative-face {
+  position: relative;
+  z-index: 2;
+}
+
+.absolute-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Avatar Card Body & Grid */
+.avatar-card-body {
+  padding: 1.15rem;
+}
+
+.avatar-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+@media (min-width: 480px) {
+  .avatar-stats-grid {
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Tech Portrait Frame */
+.avatar-portrait-box {
+  position: relative;
+  width: 120px;
+  height: 150px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-subtle);
+  background-color: #040604;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.specs-card-wrapper.flipped .avatar-portrait-box {
+  border-color: var(--olive-signal);
+  box-shadow: 0 0 15px rgba(var(--olive-signal-rgb), 0.15);
+}
+
+.avatar-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  display: block;
+  filter: brightness(0.9) contrast(1.05);
+  transform: scale(1.0);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.specs-card-wrapper.flipped:hover .avatar-portrait-img {
+  transform: scale(1.12);
+}
+
+.avatar-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(var(--olive-signal-rgb), 0.05) 2px,
+      rgba(var(--olive-signal-rgb), 0.05) 3px);
+  pointer-events: none;
+}
+
+.portrait-led {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--olive-signal);
+  box-shadow: 0 0 4px var(--olive-signal);
+  z-index: 3;
+}
+
+.led-top-left {
+  top: 4px;
+  left: 4px;
+}
+
+.led-bottom-right {
+  bottom: 4px;
+  right: 4px;
+}
+
+/* RPG Stats details */
+.avatar-stats-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.stat-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  border-bottom: 1px dashed var(--border-subtle);
+  padding-bottom: 0.25rem;
+}
+
+.stat-title {
+  color: var(--text-muted);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  color: var(--text-highlight);
+  font-weight: 700;
+}
+
+.stat-divider {
+  height: 1px;
+  border-bottom: 1px dashed var(--border-subtle);
+  margin: 0.15rem 0;
+}
+
+.attribute-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.attr-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.attr-bar {
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.attr-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--olive-primary) 0%, var(--olive-signal) 100%);
+  border-radius: 3px;
+  transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+  width: 0;
+}
+
+/* Force width change on active card flip */
+.specs-card-wrapper.flipped .attr-bar-fill {
+  /* This ensures the browser triggers the width transition cleanly */
+}
+
+.attr-val {
+  position: absolute;
+  right: 6px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--text-highlight);
+  text-shadow: 0 0 4px #000;
+}
+
+.perk-bar {
+  border-color: rgba(var(--olive-signal-rgb), 0.35);
+}
+
+.perk-fill {
+  background: linear-gradient(90deg, var(--crimson-accent) 0%, var(--olive-signal) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specs-card-inner {
+    transition: none;
+  }
+
+  .attr-bar-fill {
+    transition: none;
   }
 }

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 import './About.css';
 
 export default function About() {
+  const [showSkin, setShowSkin] = useState(false);
+
   return (
     <section id="about" className="about-section">
       <div className="container about-container">
@@ -25,39 +27,138 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal className="about-specs" delay={0.12}>
-            <div className="spec-card pcb-corners">
-              <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
-              <span className="pcb-corner pcb-corner-tr" aria-hidden="true" />
-              <span className="pcb-corner pcb-corner-bl" aria-hidden="true" />
-              <span className="pcb-corner pcb-corner-br" aria-hidden="true" />
-              <div className="spec-card-header">
-                <span className="spec-model">DEVICE MODEL: MG-GRAD-2026</span>
-                <span className="spec-status">STATUS: CALIBRATED</span>
-              </div>
-              <div className="spec-card-body">
-                <div className="spec-row spec-row-degree">
-                  <span className="spec-label">DEGREE</span>
-                  <span className="spec-value">B.Sc. Business Information Systems</span>
+            {/* Tabs for switching front/back */}
+            <div className="specs-tab-header">
+              <button 
+                className={`specs-tab-btn ${!showSkin ? 'active' : ''}`}
+                onClick={() => setShowSkin(false)}
+                aria-label="Show system specifications"
+              >
+                <span className="tab-led" />
+                SPECS.SYS
+              </button>
+              <button 
+                className={`specs-tab-btn ${showSkin ? 'active' : ''}`}
+                onClick={() => setShowSkin(true)}
+                aria-label="Show system avatar"
+              >
+                <span className="tab-led" />
+                AVATAR.EXE
+              </button>
+            </div>
+
+            {/* 3D Flip Container */}
+            <div className={`specs-card-wrapper ${showSkin ? 'flipped' : ''}`}>
+              <div className="specs-card-inner">
+                {/* Front Side: Normal Specs Card */}
+                <div className={`spec-card spec-card-front pcb-corners ${!showSkin ? 'relative-face' : 'absolute-face'}`}>
+                  <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
+                  <span className="pcb-corner pcb-corner-tr" aria-hidden="true" />
+                  <span className="pcb-corner pcb-corner-bl" aria-hidden="true" />
+                  <span className="pcb-corner pcb-corner-br" aria-hidden="true" />
+                  <div className="spec-card-header">
+                    <span className="spec-model">DEVICE MODEL: MG-GRAD-2026</span>
+                    <span className="spec-status">STATUS: CALIBRATED</span>
+                  </div>
+                  <div className="spec-card-body">
+                    <div className="spec-row spec-row-degree">
+                      <span className="spec-label">DEGREE</span>
+                      <span className="spec-value">B.Sc. Business Information Systems</span>
+                    </div>
+                    <div className="spec-row">
+                      <span className="spec-label">GPA SCORE</span>
+                      <span className="spec-value highlight-gpa">3.89 / 4.00 (Excellent with Honor)</span>
+                    </div>
+                    <div className="spec-row spec-row-cores">
+                      <span className="spec-label">CORES</span>
+                      <span className="spec-value">React Native · Python · SQL · Power BI</span>
+                    </div>
+                    <div className="spec-row">
+                      <span className="spec-label">ORIGIN PORT</span>
+                      <span className="spec-value">Cairo, Egypt</span>
+                    </div>
+                    <div className="spec-row">
+                      <span className="spec-label">ARCHITECTURE</span>
+                      <span className="spec-value">Dual-Thread (Frontend + Data Analysis)</span>
+                    </div>
+                  </div>
+                  <div className="spec-card-footer">
+                    <span className="spec-silkscreen">© 2026 GABER BOARD Rev 1.0</span>
+                  </div>
                 </div>
-                <div className="spec-row">
-                  <span className="spec-label">GPA SCORE</span>
-                  <span className="spec-value highlight-gpa">3.89 / 4.00 (Excellent with Honor)</span>
+
+                {/* Back Side: Minecraft Avatar Card */}
+                <div className={`spec-card spec-card-back pcb-corners ${showSkin ? 'relative-face' : 'absolute-face'}`}>
+                  <span className="pcb-corner pcb-corner-tl" aria-hidden="true" />
+                  <span className="pcb-corner pcb-corner-tr" aria-hidden="true" />
+                  <span className="pcb-corner pcb-corner-bl" aria-hidden="true" />
+                  <span className="pcb-corner pcb-corner-br" aria-hidden="true" />
+                  <div className="spec-card-header">
+                    <span className="spec-model">BIO INTERFACE: CHIP-GABER</span>
+                    <span className="spec-status status-avatar">SKIN: PIXEL</span>
+                  </div>
+                  <div className="spec-card-body avatar-card-body">
+                    <div className="avatar-stats-grid">
+                      {/* Left: Avatar portrait showcase */}
+                      <div className="avatar-portrait-box">
+                        <img 
+                          src="/assets/Minecraft Me.jpeg" 
+                          alt="Mohamed Mohamed Gaber Minecraft" 
+                          className="avatar-portrait-img" 
+                        />
+                        <div className="avatar-scanlines" />
+                        <span className="portrait-led led-top-left" />
+                        <span className="portrait-led led-bottom-right" />
+                      </div>
+
+                      {/* Right: Detailed attributes */}
+                      <div className="avatar-stats-details">
+                        <div className="stat-group">
+                          <span className="stat-title">CLASS //</span>
+                          <span className="stat-value">FRONTEND MAGE</span>
+                        </div>
+                        <div className="stat-group">
+                          <span className="stat-title">LEVEL //</span>
+                          <span className="stat-value">2026 (GRADUATED)</span>
+                        </div>
+                        
+                        <div className="stat-divider" />
+                        
+                        <div className="attribute-row">
+                          <span className="attr-label">STR (Frontend)</span>
+                          <div className="attr-bar">
+                            <div className="attr-bar-fill" style={{ width: '90%' }} />
+                            <span className="attr-val">90%</span>
+                          </div>
+                        </div>
+                        <div className="attribute-row">
+                          <span className="attr-label">INT (Data/SQL)</span>
+                          <div className="attr-bar">
+                            <div className="attr-bar-fill" style={{ width: '85%' }} />
+                            <span className="attr-val">85%</span>
+                          </div>
+                        </div>
+                        <div className="attribute-row">
+                          <span className="attr-label">AGI (UI/UX)</span>
+                          <div className="attr-bar">
+                            <div className="attr-bar-fill" style={{ width: '80%' }} />
+                            <span className="attr-val">80%</span>
+                          </div>
+                        </div>
+                        <div className="attribute-row">
+                          <span className="attr-label">PERK (GPA Core)</span>
+                          <div className="attr-bar perk-bar">
+                            <div className="attr-bar-fill perk-fill" style={{ width: '97%' }} />
+                            <span className="attr-val highlight-gpa">GPA 3.89</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="spec-card-footer">
+                    <span className="spec-silkscreen">CHARACTER CARD Rev 2.0 // GAME ON</span>
+                  </div>
                 </div>
-                <div className="spec-row spec-row-cores">
-                  <span className="spec-label">CORES</span>
-                  <span className="spec-value">React Native · Python · SQL · Power BI</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">ORIGIN PORT</span>
-                  <span className="spec-value">Cairo, Egypt</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">ARCHITECTURE</span>
-                  <span className="spec-value">Dual-Thread (Frontend + Data Analysis)</span>
-                </div>
-              </div>
-              <div className="spec-card-footer">
-                <span className="spec-silkscreen">© 2026 GABER BOARD Rev 1.0</span>
               </div>
             </div>
           </ScrollReveal>
