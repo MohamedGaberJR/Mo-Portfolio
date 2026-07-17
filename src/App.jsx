@@ -34,6 +34,8 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (showSplash) return;
+
     const sections = ['hero', 'about', 'work', 'data', 'skills', 'contact'];
 
     const observerOptions = {
@@ -61,7 +63,7 @@ function App() {
         if (el) observer.unobserve(el);
       });
     };
-  }, []);
+  }, [showSplash]);
 
   const handleSplashComplete = () => {
     setShowSplash(false);
